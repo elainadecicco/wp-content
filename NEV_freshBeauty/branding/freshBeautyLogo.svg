@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 148.27 90.56">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        font-size: 38px;
+      }
+
+      .cls-1 {
+        font-family: GiveYouGlory, Give You Glory;
+      }
+
+      .cls-2 {
+        font-family: Fetance;
+        letter-spacing: 0.12em;
+      }
+    </style>
+  </defs>
+  <title>Asset 3freshBeautyLogo</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <text class="cls-1" transform="translate(22.95 67.49)">Beauty</text>
+      <text class="cls-2" transform="translate(0.7 37.3) rotate(-1) scale(1 1.15)">F<tspan x="22.49" y="0.3">r</tspan><tspan x="39.89" y="0.57">e</tspan><tspan x="58.4" y="0.85">s</tspan><tspan x="75.99" y="1.15">h</tspan></text>
+    </g>
+  </g>
+</svg>

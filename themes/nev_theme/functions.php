@@ -6,7 +6,11 @@
  *
  * @package Sample_Theme
  */
-
+wp_enqueue_style(
+    'custom-style',
+    get_stylesheet_directory_uri() . '/assets/css/custom.css',
+    array()
+);
 if ( ! function_exists( 'sample_theme_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.

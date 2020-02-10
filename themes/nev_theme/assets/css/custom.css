@@ -5,13 +5,21 @@
     }
 
 
-    ul{
-    display: flex;
-    flex-direction: row;
-  
-  
-    }
-  
-    li{
+    #primary-menu ul{
+        color: red;
         list-style-type: none;
+        display: flex;
+        
+
+
+    }
+    .menu{
+
+       
+    
+    }
+
+    .site-header{
+
+        background-color: #FFDFB6;
     }

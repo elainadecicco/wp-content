@@ -49,7 +49,7 @@
 		</div><!-- .site-branding -->
 		<!-- /*logo */ -->
 	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-            <img id="logo" src="<?php echo get_template_directory_uri(); ?>/assets/img/freshBeautyLogo.svg" alt="Logo" width="350px" height="200px" />
+            <img id="logo" src="<?php echo get_template_directory_uri(); ?>/assets/img/freshBeautyLogo2.svg" alt="Logo" width="350px" height="200px" />
         </a>
 		
 

@@ -14,19 +14,20 @@
 	</div><!-- #content -->
 
 	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'sample-theme' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'sample-theme' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'sample-theme' ), 'sample-theme', '<a href="https://matthewfarlymn.com">Matthew Farlymn</a>' );
-				?>
-		</div><!-- .site-info -->
+
+	<!-- /*logo */ -->
+	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+        <img id="twitter" src="<?php echo get_template_directory_uri(); ?>/assets/img/twitter.svg" alt="Logo" width="350px" height="200px" />
+	</a>
+	
+	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+        <img id="facebook" src="<?php echo get_template_directory_uri(); ?>/assets/img/facebook.svg" alt="Logo" width="350px" height="200px" />
+	</a>
+	
+	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+        <img id="instagram" src="<?php echo get_template_directory_uri(); ?>/assets/img/instagram.svg" alt="Logo" width="350px" height="200px" />
+    </a>
+		<!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

@@ -1,28 +1,24 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-body{
-    background-color: #FFE1B4;
-}
+    button, input, optgroup, select, textarea {
+        font-family: inherit;
+        display: none;
+    }
+
 
     #primary-menu ul{
+        color: red;
         list-style-type: none;
         display: flex;
         font-size: 22px;
         padding-left: 450px;
+
+
     }
     #logo {
         width: 80px;
         height: auto;
         position: absolute;
-        left: 10%;
-    }
-
-    .skip-link{
-        display: none;
+        left: 40px;
     }
     .menu{
 

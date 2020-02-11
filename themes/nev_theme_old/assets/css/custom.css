@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+<<<<<<< HEAD
+    background-color: #FFE1B4;
+=======
+    background-color:#ffffff;
+>>>>>>> master
+}
+
+    #primary-menu ul{
+        list-style-type: none;
+        display: flex;
+        font-size: 22px;
+        padding-left: 450px;
+    }
+    #logo {
+        width: 80px;
+        height: auto;
+        position: absolute;
+        left: 10%;
+    }
+
+    .skip-link{
+        display: none;
+    }
+    .menu{
+
+       
+    
+    }
+
+    .site-header{
+
+        background-color: #FFDFB6;
+    }
+
+#logo {
+    margin-left: 10px;
+}
+
+#colophon{
+    width:100vw;
+    height: 100px;
+    background-color: #FFDFB6;
+
+}

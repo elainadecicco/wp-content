@@ -1,14 +1,11 @@
-/* *{
+* {
+    margin: 0;
     padding: 0;
-    margin: 0 !important;
-} */
-    
-    /* button, input, optgroup, select, textarea {
-        font-family: inherit;
-        display: none;
-    } */
+    box-sizing: border-box;
+}
+
 body{
-    background-color: red;
+    background-color: #FFE1B4;
 }
 
     #primary-menu ul{

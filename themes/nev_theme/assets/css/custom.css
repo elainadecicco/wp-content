@@ -41,3 +41,10 @@ body{
 #logo {
     margin-left: 10px;
 }
+
+#colophon{
+    width:100vw;
+    height: 100px;
+    background-color: #FFDFB6;
+
+}

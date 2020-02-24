@@ -82,7 +82,7 @@ if ( ! function_exists( 'nev_theme_setup' ) ) :
 		) );
 	}
 //
-add_action( 'after_setup_theme', 'sample_theme_setup' );
+add_action( 'after_setup_theme', 'nev_theme_setup' );
 endif;
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.

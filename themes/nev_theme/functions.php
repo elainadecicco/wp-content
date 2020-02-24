@@ -7,7 +7,7 @@
  * @package Sample_Theme
  */
 
-if ( ! function_exists( 'sample_theme_setup' ) ) :
+if ( ! function_exists( 'nev_theme_setup' ) ) :
 	wp_enqueue_style(
 		'custom-style',
 		get_stylesheet_directory_uri() . '/assets/css/custom.css',
@@ -80,10 +80,6 @@ if ( ! function_exists( 'sample_theme_setup' ) ) :
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
-
-		
-		
-	
 	}
 //
 add_action( 'after_setup_theme', 'sample_theme_setup' );

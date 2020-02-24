@@ -20,7 +20,7 @@ if ( ! function_exists( 'nev_theme_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function sample_theme_setup() {
+	function nev_theme_setup() {
 
 
 		/*

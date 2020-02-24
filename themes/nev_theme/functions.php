@@ -6,12 +6,13 @@
  *
  * @package Sample_Theme
  */
-wp_enqueue_style(
-    'custom-style',
-    get_stylesheet_directory_uri() . '/assets/css/custom.css',
-    array()
-);
+
 if ( ! function_exists( 'sample_theme_setup' ) ) :
+	wp_enqueue_style(
+		'custom-style',
+		get_stylesheet_directory_uri() . '/assets/css/custom.css',
+		array()
+	);
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -20,6 +21,8 @@ if ( ! function_exists( 'sample_theme_setup' ) ) :
 	 * as indicating support for post thumbnails.
 	 */
 	function sample_theme_setup() {
+
+
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
@@ -65,7 +68,7 @@ if ( ! function_exists( 'sample_theme_setup' ) ) :
 
 		// Add theme support for selective refresh for widgets.
 		add_theme_support( 'customize-selective-refresh-widgets' );
-
+		
 		/**
 		 * Add support for core custom logo.
 		 *
@@ -77,10 +80,14 @@ if ( ! function_exists( 'sample_theme_setup' ) ) :
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
-	}
-endif;
-add_action( 'after_setup_theme', 'sample_theme_setup' );
 
+		
+		
+	
+	}
+//
+add_action( 'after_setup_theme', 'sample_theme_setup' );
+endif;
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *

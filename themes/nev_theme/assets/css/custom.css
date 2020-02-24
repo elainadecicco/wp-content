@@ -87,9 +87,21 @@ li{
 
 footer img {
     width: 40%;
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+=======
+    padding-top: 20px;
+>>>>>>> Stashed changes
+>>>>>>> master
     
 } 
 
+.wpcf7-form{
+    width: 500px;
+    margin-left: 420px;
+}
+ /*  */
 
 
 

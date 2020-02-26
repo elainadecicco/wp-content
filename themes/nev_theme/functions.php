@@ -7,12 +7,7 @@
  * @package Sample_Theme
  */
 
-if ( ! function_exists( 'sample_theme_setup' ) ) :
-	wp_enqueue_style(
-		'custom-style',
-		get_stylesheet_directory_uri() . '/assets/css/custom.css',
-		array()
-	);
+
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -22,7 +17,12 @@ if ( ! function_exists( 'sample_theme_setup' ) ) :
 	 */
 	function sample_theme_setup() {
 
-
+		if ( ! function_exists( 'sample_theme_setup' ) ) :
+			wp_enqueue_style(
+				'custom-style',
+				get_stylesheet_directory_uri() . '/assets/css/custom.css',
+				array()
+			);
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
@@ -83,11 +83,10 @@ if ( ! function_exists( 'sample_theme_setup' ) ) :
 
 		
 		
-	
+	endif;
 	}
 //
 add_action( 'after_setup_theme', 'sample_theme_setup' );
-endif;
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *

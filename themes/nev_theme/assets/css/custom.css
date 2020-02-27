@@ -82,17 +82,12 @@ li{
     justify-content: center;
 }
 
-/* footer img {
+footer img {
     width: 40%;
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-=======
+
     padding-top: 20px;
->>>>>>> Stashed changes
->>>>>>> master
     
-}  */
+} 
 
 .wpcf7-form{
     width: 500px;
@@ -111,9 +106,11 @@ li{
     align-self: center;
     flex-direction:column;
     
-    
 }
 
+.wp-block-cover, .wp-block-cover-image{
+    width:300px;
+}
 
  /*  */
 

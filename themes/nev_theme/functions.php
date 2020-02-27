@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package Sample_Theme
+ * @package nev_theme
  */
 
 
@@ -15,23 +15,23 @@
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	if ( ! function_exists( 'sample_theme_setup' ) ) :
+	if ( ! function_exists( 'nev_theme_setup' ) ) :
 		wp_enqueue_style(
 			'custom-style',
 			get_stylesheet_directory_uri() . '/assets/css/custom.css',
 			array()
 		);
 		
-	function sample_theme_setup() {
+	function nev_theme_setup() {
 
 	
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
 		 * If you're building a theme based on Sample Theme, use a find and replace
-		 * to change 'sample-theme' to the name of your theme in all the template files.
+		 * to change 'nev-theme' to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( 'sample-theme', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'nev-theme', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -53,7 +53,7 @@
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'menu' => esc_html__( 'Primary', 'sample-theme' ),
+			'menu' => esc_html__( 'Primary', 'nev-theme' ),
 		) );
 
 		/*
@@ -86,7 +86,7 @@
 	}
 endif;
 //
-add_action( 'after_setup_theme', 'sample_theme_setup' );
+add_action( 'after_setup_theme', 'nev_theme_setup' );
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
@@ -94,51 +94,51 @@ add_action( 'after_setup_theme', 'sample_theme_setup' );
  *
  * @global int $content_width
  */
-function sample_theme_content_width() {
+function nev_theme_content_width() {
 	// This variable is intended to be overruled from themes.
 	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-	$GLOBALS['content_width'] = apply_filters( 'sample_theme_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'nev_theme_content_width', 640 );
 }
-add_action( 'after_setup_theme', 'sample_theme_content_width', 0 );
+add_action( 'after_setup_theme', 'nev_theme_content_width', 0 );
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function sample_theme_widgets_init() {
+function nev_theme_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'sample-theme' ),
+		'name'          => esc_html__( 'Sidebar', 'nev-theme' ),
 		'id'            => 'sidebar',
-		'description'   => esc_html__( 'Add widgets here.', 'sample-theme' ),
+		'description'   => esc_html__( 'Add widgets here.', 'nev-theme' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
 }
-add_action( 'widgets_init', 'sample_theme_widgets_init' );
+add_action( 'widgets_init', 'nev_theme_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
  */
-function sample_theme_scripts() {
-	wp_enqueue_style( 'sample-theme-style', get_stylesheet_uri() );
+function nev_theme_scripts() {
+	wp_enqueue_style( 'nev-theme-style', get_stylesheet_uri() );
 
 	//ENQUEUE FOUNDATION CSS 
-	wp_enqueue_style('sample-theme-foundation', get_template_directory_uri().'/assets/css/vendor/foundation.min.css', null, '6.5.1');
+	wp_enqueue_style('nev-theme-foundation', get_template_directory_uri().'/assets/css/vendor/foundation.min.css', null, '6.5.1');
 
 	//ENQUEUE FOUNDATION JS
-	wp_enqueue_script('sample-theme-what-input', get_template_directory_uri().'/assets/js/vendor/what-input.js', array('jquey'), '6.5.1', true);
+	wp_enqueue_script('nev-theme-what-input', get_template_directory_uri().'/assets/js/vendor/what-input.js', array('jquey'), '6.5.1', true);
 	
-	wp_enqueue_script('sample-theme-foundation', get_template_directory_uri().'/assets/js/vendor/foundation.min.js', array('jquey'),'sample-theme-what-input', '6.5.1', true);
+	wp_enqueue_script('nev-theme-foundation', get_template_directory_uri().'/assets/js/vendor/foundation.min.js', array('jquey'),'nev-theme-what-input', '6.5.1', true);
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'sample_theme_scripts' );
+add_action( 'wp_enqueue_scripts', 'nev_theme_scripts' );
 
 /**
  * Custom template tags for this theme.

@@ -95,7 +95,7 @@ footer img {
 
 .has-pale-pink-background-color {
     padding:40px;
-    width:950px;
+    max-width:950px;
     align-content: center;
     justify-self: center;
     margin-left:16%;

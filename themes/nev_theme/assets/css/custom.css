@@ -25,11 +25,6 @@
         position: absolute;
         left: 40px;
     }
-    .menu{
-
-       
-    
-    }
 
     .site-header{
 
@@ -39,14 +34,16 @@
 #logo {
     margin-left: 10px;
 }
-
-
+/* .site-main{
+    width:900px;
+} */
 
 
 
 .content-area{
     background-color:#ffe0b6;
     padding:20px;
+    
 
 }
 
@@ -85,7 +82,7 @@ li{
     justify-content: center;
 }
 
-footer img {
+/* footer img {
     width: 40%;
 <<<<<<< HEAD
 =======
@@ -95,7 +92,7 @@ footer img {
 >>>>>>> Stashed changes
 >>>>>>> master
     
-} 
+}  */
 
 .wpcf7-form{
     width: 500px;
@@ -104,7 +101,20 @@ footer img {
 
 .has-pale-pink-background-color {
     padding:40px;
+    width:950px;
+    align-content: center;
+    justify-self: center;
+    margin-left:16%;
 }
+.entry-content{
+    display:flex;
+    align-self: center;
+    flex-direction:column;
+    
+    
+}
+
+
  /*  */
 
 

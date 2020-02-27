@@ -15,14 +15,16 @@
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
+	if ( ! function_exists( 'sample_theme_setup' ) ) :
+		wp_enqueue_style(
+			'custom-style',
+			get_stylesheet_directory_uri() . '/assets/css/custom.css',
+			array()
+		);
+		
 	function sample_theme_setup() {
 
-		if ( ! function_exists( 'sample_theme_setup' ) ) :
-			wp_enqueue_style(
-				'custom-style',
-				get_stylesheet_directory_uri() . '/assets/css/custom.css',
-				array()
-			);
+	
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
@@ -81,10 +83,8 @@
 			'flex-height' => true,
 		) );
 
-		
-		
-	endif;
 	}
+endif;
 //
 add_action( 'after_setup_theme', 'sample_theme_setup' );
 /**

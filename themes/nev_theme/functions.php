@@ -22,6 +22,7 @@
 		if ( ! function_exists( 'nev_theme_setup' ) ) :
 			wp_enqueue_style(
 				'custom-style',
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
 				get_stylesheet_directory_uri() . 'assets/css/custom.css',
@@ -31,6 +32,9 @@
 =======
 				get_stylesheet_directory_uri() . 'assets/css/custom.css',
 >>>>>>> master
+=======
+				get_stylesheet_directory_uri() . 'assets/css/custom.css',
+>>>>>>> Stashed changes
 				array()
 			);
 		/*

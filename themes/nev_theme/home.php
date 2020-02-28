@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package Sample_Theme
+ * @package nev_theme
  */
 
 ?>
@@ -28,22 +28,18 @@
 		<div class="site-branding">
 			<?php
 			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
+			
+			$nev_theme_description = get_bloginfo( 'description', 'display' );
+			if ( $nev_theme_description || is_customize_preview() ) :
 				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$sample_theme_description = get_bloginfo( 'description', 'display' );
-			if ( $sample_theme_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $sample_theme_description; /* WPCS: xss ok. */ ?></p>
+				
 			<?php endif; ?>
 		</div><!-- .site-branding -->
-
+			<!-- /*logo */ -->
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+            	<img id="logo" src="<?php echo get_template_directory_uri(); ?>/assets/img/freshBeautyLogo2.svg" alt="Logo" width="350px" height="200px" />
+			</a>
+			
 		<nav id="site-navigation" class="main-navigation">
 			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'sample-theme' ); ?></button>
 			<?php
@@ -54,5 +50,30 @@
 			?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
+	<!-- .site-info -->
+
+
+
+
+
+
+
+	<footer id="colophon" class="site-footer">
+
+<!-- /*logo */ -->
+<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+	<img id="twitter" src="<?php echo get_template_directory_uri(); ?>/assets/img/twitter.svg" alt="Logo" width="350px" height="200px" />
+</a>
+
+<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+	<img id="facebook" src="<?php echo get_template_directory_uri(); ?>/assets/img/facebook.svg" alt="Logo" width="350px" height="200px" />
+</a>
+
+<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+	<img id="instagram" src="<?php echo get_template_directory_uri(); ?>/assets/img/instagram.svg" alt="Logo" width="350px" height="200px" />
+</a>
+	
+</footer>
+	
 
 	<div id="content" class="site-content">

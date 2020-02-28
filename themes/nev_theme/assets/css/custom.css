@@ -25,11 +25,6 @@
         position: absolute;
         left: 40px;
     }
-    .menu{
-
-       
-    
-    }
 
     .site-header{
 
@@ -39,14 +34,16 @@
 #logo {
     margin-left: 10px;
 }
-
-
+/* .site-main{
+    width:900px;
+} */
 
 
 
 .content-area{
     background-color:#ffe0b6;
     padding:20px;
+    
 
 }
 
@@ -87,13 +84,7 @@ li{
 
 footer img {
     width: 40%;
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-=======
     padding-top: 20px;
->>>>>>> Stashed changes
->>>>>>> master
     
 } 
 
@@ -102,9 +93,24 @@ footer img {
     margin-left: 420px;
 }
 
-.wp-block__group-container{
-    padding:20px;
+.has-pale-pink-background-color {
+    padding:40px;
+    max-width:950px;
+    align-content: center;
+    justify-self: center;
+    margin-left:16%;
 }
+.entry-content{
+    display:flex;
+    align-self: center;
+    flex-direction:column;
+    
+}
+
+.wp-block-cover, .wp-block-cover-image{
+    width:300px;
+}
+
  /*  */
 
 

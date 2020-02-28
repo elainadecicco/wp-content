@@ -15,16 +15,16 @@
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	if ( ! function_exists( 'nev_theme_setup' ) ) :
-		wp_enqueue_style(
-			'custom-style',
-			get_stylesheet_directory_uri() . '/assets/css/custom.css',
-			array()
-		);
+	
 		
 	function nev_theme_setup() {
 
-	
+		if ( ! function_exists( 'nev_theme_setup' ) ) :
+			wp_enqueue_style(
+				'custom-style',
+				get_stylesheet_directory_uri() . 'assets/css/custom.css',
+				array()
+			);
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
@@ -82,9 +82,9 @@
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
-
+	endif;
 	}
-endif;
+
 //
 add_action( 'after_setup_theme', 'nev_theme_setup' );
 /**
@@ -129,6 +129,9 @@ function nev_theme_scripts() {
 	//ENQUEUE FOUNDATION CSS 
 	wp_enqueue_style('nev-theme-foundation', get_template_directory_uri().'/assets/css/vendor/foundation.min.css', null, '6.5.1');
 
+	//ENQUEUE CUSTOM CSS
+	wp_enqueue_style( 'custom-style', get_stylesheet_directory_uri() . '/assets/css/custom.css', array() );
+	
 	//ENQUEUE FOUNDATION JS
 	wp_enqueue_script('nev-theme-what-input', get_template_directory_uri().'/assets/js/vendor/what-input.js', array('jquey'), '6.5.1', true);
 	

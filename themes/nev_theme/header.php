@@ -22,16 +22,11 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( '', 'sample-theme' ); ?></a>
 
 	<header id="masthead" class="site-header">
 
-	
-		
 		<div class="site-branding">
 			<?php
-			
-			
 			
 			if ( $sample_theme_description || is_customize_preview() ) :
 				?>

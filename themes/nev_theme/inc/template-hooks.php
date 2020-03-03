@@ -12,7 +12,7 @@
  * @return array
  */
 function sample_theme_body_classes( $classes ) {
-	// Adds a class of hfeed to non-singular pages.
+	// Adds a class of header feed to non-singular pages.
 	if ( ! is_singular() ) {
 		$classes[] = 'hfeed';
 	}

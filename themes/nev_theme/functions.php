@@ -13,6 +13,7 @@ if ( ! function_exists( 'nev_theme_setup' ) ) :
 		get_stylesheet_directory_uri() . '/assets/css/custom.css',
 		array()
 	);
+	
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *

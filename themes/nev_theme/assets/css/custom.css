@@ -22,7 +22,6 @@
         margin-top: 20px;
         width: 120px;
         height: auto;
-        position: absolute;
         left: 40px;
     }
 
@@ -58,17 +57,16 @@ li{
 .site-header{
     background-color:#ffe0b6;
 }
-#primary-menu>ul{
+#primary-menu{
     display: flex;
     flex-direction: row-reverse;
-
     justify-content: space-around;
     background-color:#e4ff95;
-    width: 100vw;
     color: white;
     align-items: center;
     margin-right:20px;
-    margin-top: 100px;
+    margin-left: 30px;
+    margin-top: 30px;
 }
 
 #recent-posts-2, #recent-comments-2, #archives-2, #categories-2, #meta-2, #secondary {

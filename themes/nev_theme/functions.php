@@ -50,11 +50,7 @@
 		 */
 		add_theme_support( 'post-thumbnails' );
 
-		// This theme uses wp_nav_menu() in one location.
-		register_nav_menus( array(
-			'menu' => esc_html__( 'Primary', 'nev-theme' ),
-		) );
-
+		// This theme uses wp_nav_menu() in one location
 		/*
 		 * Switch default core markup for search form, comment form, and comments
 		 * to output valid HTML5.
@@ -69,23 +65,52 @@
 
 		// Add theme support for selective refresh for widgets.
 		add_theme_support( 'customize-selective-refresh-widgets' );
-		
-		/**
-		 * Add support for core custom logo.
-		 *
-		 * @link https://codex.wordpress.org/Theme_Logo
-		 */
-		add_theme_support( 'custom-logo', array(
-			'height'      => 250,
-			'width'       => 250,
-			'flex-width'  => true,
-			'flex-height' => true,
-		) );
 	endif;
 	}
-
 //
-add_action( 'after_setup_theme', 'nev_theme_setup' );
+add_action( 'init', 'nev_theme_setup' );
+function register_nev_menus(){
+	register_nav_menus( array(
+		'primary-menu' => __('Header Nav Menu'),
+		'footer-menu' => __('Footer Menu')
+	) );
+}
+add_action('after_setup_theme', 'register_nev_menus');
+/**
+ * Making a function for custom logo and set the measurements for it
+ */
+function nev_theme_custom_logo_Setup(){
+	$defaults =  array(
+		'height'      => 250,
+		'width'       => 250,
+		'flex-width'  => true,
+		'flex-height' => true,
+		'header-text' => array( 'site-title', 'site-description' ),
+	);
+	add_theme_support('custom-logo', $defaults);
+}
+add_action( 'after_setup_theme', 'nev_theme_custom_logo_Setup' );
+
+
+/**
+ * making a function for header_Setup
+ */
+function nev_custom_header_setup() {
+	add_theme_support( 'custom-header', array(
+		'default-text-color' => '000',
+		'width'              => 1000,
+		'height'             => 250,
+		'flex-width'         => true,
+		'flex-height'        => true,
+	) );
+}
+add_action( 'after_setup_theme', 'nev_custom_header_setup' );
+
+/**
+ * Making a function for a dynamic navigation menu
+ */
+
+
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *

@@ -7,7 +7,6 @@
  * @package nev_theme
  */
 
-
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *

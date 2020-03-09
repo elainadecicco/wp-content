@@ -11,17 +11,6 @@
     .entry-title {
         display: none;
     }
-
-/* 
-    #primary-menu ul{
-        color: red;
-        list-style-type: none;
-        display: flex;
-        font-size: 22px;
-        padding-left: 450px;
-
-
-    } */
     #logo {
         margin-top: 20px;
         width: 120px;
@@ -38,9 +27,6 @@
 #logo {
     margin-left: 10px;
 }
-/* .site-main{
-    width:900px;
-} */
 
 
 
@@ -124,7 +110,20 @@ footer img {
     font-size: 18px;
 }
 
- /*  */
+
+
+/* 
+    #primary-menu ul{
+        color: red;
+        list-style-type: none;
+        display: flex;
+        font-size: 22px;
+        padding-left: 450px;
+    }
+
+    .site-main{
+    width:900px;
+} */ 
 
 
 

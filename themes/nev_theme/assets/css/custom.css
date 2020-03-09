@@ -121,6 +121,9 @@ footer img {
 :root .has-pale-pink-background-color{
     height:100vh;
 }
+.h3, h3 {
+    font-family: serif;
+}
 
 
 

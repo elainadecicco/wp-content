@@ -115,9 +115,6 @@ footer img {
 .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt:hover{
     background-color:pink;
 }
-.wc-proceed-to-checkout{
-    background-color:pink;
-}
 :root .has-pale-pink-background-color{
     height:100vh;
 }
@@ -127,5 +124,9 @@ footer img {
 .menu a, .menu button, .menu input, .menu select{
     color:black;
 }
-
-
+.woocommerce-MyAccount-navigation{
+    margin-top:20px;
+}
+.woocommerce-MyAccount-content{
+    margin-top:20px;
+}

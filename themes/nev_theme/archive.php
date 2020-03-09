@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package Sample_Theme
+ * @package nev_theme
  */
 
 get_header();
@@ -38,9 +38,7 @@ get_header();
 
 			the_posts_navigation();
 
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
+		
 
 		endif;
 		?>

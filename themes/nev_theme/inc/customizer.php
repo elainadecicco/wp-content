@@ -2,7 +2,7 @@
 /**
  * Sample Theme Theme Customizer
  *
- * @package Sample_Theme
+ * @package Nev_Theme
  */
 
 /**

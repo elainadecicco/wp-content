@@ -7,16 +7,6 @@
  * @package nev_theme
  */
 
-<<<<<<< HEAD
-if ( ! function_exists( 'nev_theme_setup' ) ) :
-	wp_enqueue_style(
-		'custom-style',
-		get_stylesheet_directory_uri() . '/assets/css/custom.css',
-		array()
-	);
-	
-=======
->>>>>>> master
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -24,11 +14,6 @@ if ( ! function_exists( 'nev_theme_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-<<<<<<< HEAD
-	function nev_theme_setup() {
-
-
-=======
 	
 		
 	function nev_theme_setup() {
@@ -39,7 +24,6 @@ if ( ! function_exists( 'nev_theme_setup' ) ) :
 				get_stylesheet_directory_uri() . 'assets/css/custom.css',
 				array()
 			);
->>>>>>> master
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
@@ -81,26 +65,15 @@ if ( ! function_exists( 'nev_theme_setup' ) ) :
 
 		// Add theme support for selective refresh for widgets.
 		add_theme_support( 'customize-selective-refresh-widgets' );
-<<<<<<< HEAD
-		
-		/**
-		 * Add support for core custom logo.
-		 *
-		 * @link https://codex.wordpress.org/Theme_Logo
-		 */
-		add_theme_support( 'custom-logo', array(
-			'height'      => 250,
-			'width'       => 250,
-			'flex-width'  => true,
-			'flex-height' => true,
-		) );
-	}
-//
-add_action( 'after_setup_theme', 'nev_theme_setup' );
-endif;
-=======
 	endif;
 	}
+//adding google fonts
+ 	 function wpb_add_google_fonts() {
+	wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css?family=Spartan&display=swap" rel="stylesheet"', false ); 
+	}
+		add_action( 'wp_enqueue_scripts', 'wpb_add_google_fonts' );
+		
+
 //
 add_action( 'init', 'nev_theme_setup' );
 function register_nev_menus(){
@@ -145,7 +118,6 @@ add_action( 'after_setup_theme', 'nev_custom_header_setup' );
  */
 
 
->>>>>>> master
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *

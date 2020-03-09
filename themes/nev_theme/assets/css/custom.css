@@ -141,3 +141,13 @@ padding:100px;
 .tabs wc-tabs{
     display:none;
 }
+.woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button{
+
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.woocommerce ul.products li.product a:hover{
+    color: indianred;
+    background-color: gainsboro;
+}

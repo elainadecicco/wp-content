@@ -27,7 +27,8 @@
 
     .site-header{
 
-        background-color: #FFDFB6;
+        /* background-color: #FFDFB6; */
+        background-color: #FFF;
     }
 
 #logo {
@@ -40,7 +41,7 @@
 
 
 .content-area{
-    background-color:#ffe0b6;
+    background-color:#FFF;
     padding:20px;
     
 
@@ -90,7 +91,6 @@ footer img {
     width: 500px;
     margin-left: 420px;
 }
-<<<<<<< Updated upstream
 
 .has-pale-pink-background-color {
     padding:40px;
@@ -110,8 +110,6 @@ footer img {
     width:300px;
 }
 
-=======
->>>>>>> Stashed changes
  /*  */
 
 

@@ -119,16 +119,17 @@ footer img {
 .woocommerce ul.products li.product .woocommerce-loop-category__title, .woocommerce ul.products li.product .woocommerce-loop-product__title, .woocommerce ul.products li.product h3 {
     font-size: 18px;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .woocommerce ul.products li.product .price{
 
-   color: #B81D13;
+color: #B81D13;
 text-align: center;
 }
 
 .woocommerce ul.products li.product a img{
-    width: 50%;    
+    width: 60%;    
     margin: auto;
 
 }

@@ -154,3 +154,11 @@ text-align: center;
  .woocommerce div.product div.images img{
      width: 70%;
  }
+
+ .woocommerce div.product form.cart .button {
+    /* vertical-align: middle;
+    float: left; */
+    width: 30%;
+    color: indianred;
+    background-color: gainsboro;
+}

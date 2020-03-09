@@ -115,9 +115,7 @@ footer img {
 .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt:hover{
     background-color:pink;
 }
-:root .has-pale-pink-background-color{
-    height:100vh;
-}
+
 .h3, h3 {
     font-family: serif;
 }
@@ -132,4 +130,14 @@ footer img {
 }
 .woocommerce #content div.product div.summary, .woocommerce div.product div.summary, .woocommerce-page #content div.product div.summary, .woocommerce-page div.product div.summary {
 margin-top:80px;
+padding:100px;
+}
+.woocommerce div.product{
+    padding:100px;
+}
+.woocommerce div.product span.price{
+    font-size:2em;
+}
+.tabs wc-tabs{
+    display:none;
 }

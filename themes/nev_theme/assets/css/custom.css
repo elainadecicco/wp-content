@@ -124,6 +124,7 @@ footer img {
 .woocommerce ul.products li.product .price{
 
    color: #B81D13;
+text-align: center;
 }
 
 .woocommerce ul.products li.product a img{

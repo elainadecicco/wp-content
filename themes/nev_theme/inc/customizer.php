@@ -1,6 +1,6 @@
 <?php
 /**
- * Sample Theme Theme Customizer
+ * Nev Theme Theme Customizer file
  *
  * @package Nev_Theme
  */

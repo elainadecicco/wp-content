@@ -90,9 +90,9 @@ footer img {
     width: 500px;
     margin-left: 420px;
 }
-<<<<<<< Updated upstream
 
-.has-pale-pink-background-color {
+
+.has-pale-pink-background-color, .woocommerce_cart {
     padding:40px;
     max-width:950px;
     align-content: center;
@@ -106,15 +106,21 @@ footer img {
     
 }
 
-.wp-block-cover, .wp-block-cover-image{
+/* .wp-block-cover, .wp-block-cover-image{
     width:300px;
+} */
+.woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt{
+    background-color: #e4ff95;
 }
-
-=======
->>>>>>> Stashed changes
- /*  */
-
-
+.woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt:hover{
+    background-color:pink;
+}
+.wc-proceed-to-checkout{
+    background-color:pink;
+}
+:root .has-pale-pink-background-color{
+    height:100vh;
+}
 
 
 

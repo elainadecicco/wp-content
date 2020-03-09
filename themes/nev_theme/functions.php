@@ -67,6 +67,13 @@
 		add_theme_support( 'customize-selective-refresh-widgets' );
 	endif;
 	}
+//adding google fonts
+ 	 function wpb_add_google_fonts() {
+	wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css?family=Spartan&display=swap" rel="stylesheet"', false ); 
+	}
+		add_action( 'wp_enqueue_scripts', 'wpb_add_google_fonts' );
+		
+
 //
 add_action( 'init', 'nev_theme_setup' );
 function register_nev_menus(){

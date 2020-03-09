@@ -151,3 +151,6 @@ padding:100px;
     color: indianred;
     background-color: gainsboro;
 }
+.woocommerce div.product .woocommerce-tabs ul.tabs{
+    display:none;
+}

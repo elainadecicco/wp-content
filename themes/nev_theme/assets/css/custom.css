@@ -124,6 +124,8 @@ footer img {
 .h3, h3 {
     font-family: serif;
 }
-
+.menu a, .menu button, .menu input, .menu select{
+    color:black;
+}
 
 

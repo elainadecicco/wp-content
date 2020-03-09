@@ -118,6 +118,7 @@ footer img {
 /* Product title font size */
 .woocommerce ul.products li.product .woocommerce-loop-category__title, .woocommerce ul.products li.product .woocommerce-loop-product__title, .woocommerce ul.products li.product h3 {
     font-size: 18px;
+    text-align: center;
 }
 
 .woocommerce ul.products li.product .price{

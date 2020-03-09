@@ -15,18 +15,20 @@
 
 	<footer id="colophon" class="site-footer">
 
+	<h3>FreshBeauty 2020 All Rights Reserved</h3>
+
 	<!-- /*logo */ -->
-	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-        <img id="twitter" src="<?php echo get_template_directory_uri(); ?>/assets/img/twitter.svg" alt="Logo" width="350px" height="200px" />
+	<div><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+        <img id="twitter" src="<?php echo get_template_directory_uri(); ?>/assets/img/twitter.svg" alt="Logo" width="35px" height="20px" />
 	</a>
 	
 	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-        <img id="facebook" src="<?php echo get_template_directory_uri(); ?>/assets/img/facebook.svg" alt="Logo" width="350px" height="200px" />
+        <img id="facebook" src="<?php echo get_template_directory_uri(); ?>/assets/img/facebook.svg" alt="Logo" width="35px" height="20px" />
 	</a>
 	
 	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-        <img id="instagram" src="<?php echo get_template_directory_uri(); ?>/assets/img/instagram.svg" alt="Logo" width="350px" height="200px" />
-    </a>
+        <img id="instagram" src="<?php echo get_template_directory_uri(); ?>/assets/img/instagram.svg" alt="Logo" width="35px" height="20px" />
+    </a></div>
 		<!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->

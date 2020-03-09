@@ -126,7 +126,9 @@ footer img {
 }
 
 .woocommerce ul.products li.product a img{
-    width: 50%;
+    width: 50%;    
+    margin: auto;
+
 }
 
 

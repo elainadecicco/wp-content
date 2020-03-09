@@ -88,6 +88,12 @@ if ( has_nav_menu( 'primary-menu' ) ) {
 	);
 	wp_nav_menu( $args );
 }
+//use fallback parameter to only display set theme location
+$args = array(
+	'theme_location' => 'footer-menu',
+	'fallback_cb'    => false,
+);
+wp_nav_menu( $args );
 /**
  * Making a function for custom logo and set the measurements for it
  */

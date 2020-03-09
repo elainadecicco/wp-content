@@ -130,3 +130,6 @@ footer img {
 .woocommerce-MyAccount-content{
     margin-top:20px;
 }
+.woocommerce #content div.product div.summary, .woocommerce div.product div.summary, .woocommerce-page #content div.product div.summary, .woocommerce-page div.product div.summary {
+margin-top:80px;
+}

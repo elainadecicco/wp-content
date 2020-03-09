@@ -9,6 +9,12 @@
 	 * Panel
 	 */
 
+	$wp_customize->add_panel( 'sample_theme_social_media_panel', array(
+		'title' => esc_html__( 'Social Media', 'sample_theme' ),
+		'capability' => 'edit_theme_options',
+	) );
+
+
 	/**
 	 * Sections
 	 */

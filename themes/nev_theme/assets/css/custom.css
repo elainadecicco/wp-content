@@ -120,6 +120,11 @@ footer img {
     font-size: 18px;
 }
 
+.woocommerce ul.products li.product .price{
+
+   color: #B81D13;
+}
+
  /*  */
 
 

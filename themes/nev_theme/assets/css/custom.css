@@ -125,6 +125,9 @@ footer img {
    color: #B81D13;
 }
 
+.woocommerce ul.products li.product a img{
+    width: 50%;
+}
  /*  */
 
 

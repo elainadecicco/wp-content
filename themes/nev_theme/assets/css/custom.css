@@ -27,7 +27,8 @@
 
     .site-header{
 
-        background-color: #FFDFB6;
+        /* background-color: #FFDFB6; */
+        background-color: #FFF;
     }
 
 #logo {
@@ -40,7 +41,7 @@
 
 
 .content-area{
-    background-color:#ffe0b6;
+    background-color:#FFF;
     padding:20px;
 }
 
@@ -53,7 +54,7 @@ li{
     list-style-type: none;
 }
 .site-header{
-    background-color:#ffe0b6;
+    background-color:#FFF;
 }
 #primary-menu{
     display: flex;
@@ -85,7 +86,6 @@ footer div{
     width: 500px;
     margin-left: 420px;
 }
-<<<<<<< Updated upstream
 
 .has-pale-pink-background-color {
     padding:40px;
@@ -105,8 +105,35 @@ footer div{
     width:300px;
 }
 
-=======
->>>>>>> Stashed changes
+.woocommerce-loop-product__title{
+    color: #000;
+    font-size: 2000rem;
+}
+
+/* Product title font size */
+.woocommerce ul.products li.product .woocommerce-loop-category__title, .woocommerce ul.products li.product .woocommerce-loop-product__title, .woocommerce ul.products li.product h3 {
+    font-size: 18px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.woocommerce ul.products li.product .price{
+
+color: #B81D13;
+text-align: center;
+}
+
+.woocommerce ul.products li.product a img{
+    width: 60%;    
+    margin: auto;
+
+}
+
+
+.woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button{
+
+    width: 100%;
+}
  /*  */
 
 

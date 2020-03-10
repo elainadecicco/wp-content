@@ -157,11 +157,12 @@ text-align: center;
  .entry-title {
     color: indianred;
     position: relative;
-    right: -100px;
+    /* right: -100px; */
     font-size: 2rem;
     font-weight: 700;
     
  }
+ 
 
 
  .woocommerce div.product form.cart .button {
@@ -174,4 +175,9 @@ text-align: center;
 .woocommerce div.product div.images .woocommerce-product-gallery__trigger{
 
   display: none;
+}
+
+.woocommerce #content table.cart td.actions .input-text, .woocommerce table.cart td.actions .input-text, .woocommerce-page #content table.cart td.actions .input-text, .woocommerce-page table.cart td.actions .input-text{
+
+    width: 100%;
 }

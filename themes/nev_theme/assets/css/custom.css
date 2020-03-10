@@ -150,7 +150,7 @@ padding:100px;
 .woocommerce ul.products li.product a:hover{
     color:palevioletred;
     background-color: pink;
-    border:palevioletred;
+    border:solid 2pt palevioletred;
 }
 .woocommerce div.product .woocommerce-tabs ul.tabs{
     display:none;

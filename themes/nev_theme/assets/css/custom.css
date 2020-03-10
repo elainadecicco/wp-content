@@ -181,3 +181,6 @@ text-align: center;
 
     width: 100%;
 }
+.woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button{
+    color:indianred;
+}

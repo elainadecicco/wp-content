@@ -1,8 +1,14 @@
 <?php
 /**
+<<<<<<< HEAD
  * nevTheme Theme Customizer
  *
  * @package nevTheme
+=======
+ * nev Theme Theme Customizer
+ *
+ * @package nev_Theme
+>>>>>>> master
  */
 
 /**
@@ -24,6 +30,7 @@ function nev_theme_customize_register( $wp_customize ) {
 			'render_callback' => 'nev_theme_customize_partial_blogdescription',
 		) );
 	}
+<<<<<<< HEAD
 
 	/**
 	 * PANELS
@@ -104,3 +111,33 @@ function nev_theme_customize_register( $wp_customize ) {
 }
 //adding action to render the customize_register
 add_action( 'customize_register', 'nev_theme_customize_register' );
+=======
+}
+add_action( 'customize_register', 'nev_theme_customize_register' );
+
+/**
+ * Render the site title for the selective refresh partial.
+ *
+ * @return void
+ */
+function nev_theme_customize_partial_blogname() {
+	bloginfo( 'name' );
+}
+
+/**
+ * Render the site tagline for the selective refresh partial.
+ *
+ * @return void
+ */
+function nev_theme_customize_partial_blogdescription() {
+	bloginfo( 'description' );
+}
+
+/**
+ * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
+ */
+function nev_theme_customize_preview_js() {
+	wp_enqueue_script( 'nev-theme-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20151215', true );
+}
+add_action( 'customize_preview_init', 'nev_theme_customize_preview_js' );
+>>>>>>> master

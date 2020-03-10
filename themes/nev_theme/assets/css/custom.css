@@ -142,14 +142,15 @@ padding:100px;
     display:none;
 }
 .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button{
-
+    background-color:pink;
     width: 100%;
     text-transform: uppercase;
 }
 
 .woocommerce ul.products li.product a:hover{
-    color: indianred;
-    background-color: gainsboro;
+    color:palevioletred;
+    background-color: pink;
+    border:palevioletred;
 }
 .woocommerce div.product .woocommerce-tabs ul.tabs{
     display:none;

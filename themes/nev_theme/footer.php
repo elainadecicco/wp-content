@@ -17,18 +17,30 @@
 
 	<h3>FreshBeauty 2020 All Rights Reserved</h3>
 
-	<!-- /*logo */ -->
-	<div><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-        <img id="twitter" src="<?php echo get_template_directory_uri(); ?>/assets/img/twitter.svg" alt="Logo" width="35px" height="20px" />
-	</a>
-	
-	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-        <img id="facebook" src="<?php echo get_template_directory_uri(); ?>/assets/img/facebook.svg" alt="Logo" width="35px" height="20px" />
-	</a>
-	
-	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-        <img id="instagram" src="<?php echo get_template_directory_uri(); ?>/assets/img/instagram.svg" alt="Logo" width="35px" height="20px" />
-    </a></div>
+	<!-- /*logos */ -->
+	<div>
+	<?php if (get_theme_mod('nev_theme_facebook_url')){ ?>
+		<!-- add other socials by copying the code below -->
+			<?php if (get_theme_mod('nev_theme_facebook_url')) { ?>
+				<!-- add image file to link -->
+				 <a style="margin-left: 10px;" href="#<?php echo get_theme_mod('nev_theme_facebook_url');?>"><img src="<?php echo get_template_directory_uri() . '/assets/img/facebook.svg'; ?>" alt="<?php echo esc_html__('Facebook', 'nev_theme');?>" width="40" height="40"/></a>
+			<?php } ?>
+		<?php } ?>
+		<?php if (get_theme_mod('nev_theme_instagram_url')){ ?>
+		<!-- add other socials by copying the code below -->
+			<?php if (get_theme_mod('nev_theme_instagram_url')) { ?>
+				<!-- add image file to link -->
+				 <a style="margin-left: 10px;" href="#<?php echo get_theme_mod('nev_theme_instagram_url');?>"><img src="<?php echo get_template_directory_uri() . '/assets/img/instagram.svg'; ?>" alt="<?php echo esc_html__('Instagram', 'nev_theme');?>" width="40" height="40"/></a>
+			<?php } ?>
+		<?php } ?>
+		<?php if (get_theme_mod('nev_theme_twitter_url')){ ?>
+		<!-- add other socials by copying the code below -->
+			<?php if (get_theme_mod('nev_theme_twitter_url')) { ?>
+				<!-- add image file to link -->
+				 <a style="margin-left: 10px;" href="#<?php echo get_theme_mod('nev_theme_twitter_url');?>"><img src="<?php echo get_template_directory_uri() . '/assets/img/twitter.svg'; ?>" alt="<?php echo esc_html__('Twitter', 'nev_theme');?>" width="40" height="40"/></a>
+			<?php } ?>
+		<?php } ?>
+</div>
 		<!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->

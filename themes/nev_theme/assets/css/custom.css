@@ -200,3 +200,8 @@ text-align: center;
 .wp-block-media-text>figure>img, .wp-block-media-text>figure>video{
     width: 80%;
 }
+
+label.wsf-label{
+
+    color: grey;
+}

@@ -195,3 +195,23 @@ text-align: center;
 .wp-block-media-text>figure>img, .wp-block-media-text>figure>video{
     width: 80%;
 }
+
+label.wsf-label{
+
+    color: grey;
+    font-size: 18px;
+}
+
+button.wsf-button.wsf-button-primary{
+
+    background-color: indianred;
+}
+/* FOR SBUMIT */
+button.wsf-button.wsf-button-primary:hover{
+
+    background-color:#e4ff95;
+    color: #000;
+    font-weight: 500;
+    border-bottom: 3px solid grey;
+}
+

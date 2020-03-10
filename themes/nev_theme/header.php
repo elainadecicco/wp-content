@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package Sample_Theme
+ * @package nev_Theme
  */
 ?>
 
@@ -34,17 +34,17 @@
 
 			<div id="page" class="site">
 
-				<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( '', 'sample-theme' ); ?>
+				<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( '', 'nev-theme' ); ?>
 				</a>
 
 				<header id="masthead" class="site-header">
 
 					<div class="site-branding">
 						<?php
-						if ( $sample_theme_description || is_customize_preview() ) :
+						if ( $nev_theme_description || is_customize_preview() ) :
 						?>
 						<p class="site-description">
-							<?php echo $sample_theme_description; /* WPCS: xss ok. */ ?>
+							<?php echo $nev_theme_description; /* WPCS: xss ok. */ ?>
 						</p>
 						<?php endif; ?>
 					</div><!-- .site-branding -->

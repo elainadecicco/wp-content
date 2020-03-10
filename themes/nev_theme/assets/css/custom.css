@@ -153,6 +153,8 @@ text-align: center;
 
  .woocommerce div.product div.images img{
      width: 70%;
+    position: relative;
+    right: -100px;
  }
 
  .woocommerce div.product form.cart .button {
@@ -162,6 +164,7 @@ text-align: center;
     color: indianred;
     background-color: gainsboro;
 }
-.woocommerce div.product div.images .woocommerce-product-gallery__trigger::before{
-    display: none;
+.woocommerce div.product div.images .woocommerce-product-gallery__trigger{
+
+  display: none;
 }

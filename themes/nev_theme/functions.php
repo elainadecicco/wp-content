@@ -1,6 +1,6 @@
 <?php
 /**
- * Sample Theme functions and definitions
+ * nev Theme functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
@@ -27,7 +27,7 @@
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on Sample Theme, use a find and replace
+		 * If you're building a theme based on nev Theme, use a find and replace
 		 * to change 'nev-theme' to the name of your theme in all the template files.
 		 */
 		load_theme_textdomain( 'nev-theme', get_template_directory() . '/languages' );

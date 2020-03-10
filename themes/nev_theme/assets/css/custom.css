@@ -155,3 +155,6 @@ padding:100px;
 .woocommerce div.product .woocommerce-tabs ul.tabs{
     display:none;
 }
+.comment-reply-title{
+    display:none;
+}

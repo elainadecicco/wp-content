@@ -30,7 +30,6 @@ function nev_theme_customize_register( $wp_customize ) {
 			'render_callback' => 'nev_theme_customize_partial_blogdescription',
 		) );
 	}
-<<<<<<< HEAD
 
 	/**
 	 * PANELS

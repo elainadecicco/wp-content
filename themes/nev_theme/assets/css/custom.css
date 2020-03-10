@@ -1,8 +1,8 @@
-
+/* 
     button, input, optgroup, select, textarea {
         font-family: inherit;
         display: none;
-    }
+    } */
 
 /* 
     #primary-menu ul{
@@ -194,5 +194,9 @@ text-align: center;
 
 
 .wp-block-image img{
+    width: 80%;
+}
+
+.wp-block-media-text>figure>img, .wp-block-media-text>figure>video{
     width: 80%;
 }

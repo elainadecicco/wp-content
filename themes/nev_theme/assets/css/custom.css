@@ -159,3 +159,8 @@ padding:100px;
 .comment-reply-title{
     display:none;
 }
+
+.related.products,.woocommerce-Tabs-panel{
+    background-color:white;
+    padding:20px;
+}

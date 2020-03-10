@@ -7,7 +7,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package Sample_Theme
+ * @package nev_Theme
  */
 
 /*
@@ -28,18 +28,18 @@ if ( post_password_required() ) {
 		?>
 		<h2 class="comments-title">
 			<?php
-			$sample_theme_comment_count = get_comments_number();
-			if ( '1' === $sample_theme_comment_count ) {
+			$nev_theme_comment_count = get_comments_number();
+			if ( '1' === $nev_theme_comment_count ) {
 				printf(
 					/* translators: 1: title. */
-					esc_html__( 'One thought on &ldquo;%1$s&rdquo;', 'sample-theme' ),
+					esc_html__( 'One thought on &ldquo;%1$s&rdquo;', 'nev-theme' ),
 					'<span>' . get_the_title() . '</span>'
 				);
 			} else {
 				printf( // WPCS: XSS OK.
 					/* translators: 1: comment count number, 2: title. */
-					esc_html( _nx( '%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $sample_theme_comment_count, 'comments title', 'sample-theme' ) ),
-					number_format_i18n( $sample_theme_comment_count ),
+					esc_html( _nx( '%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $nev_theme_comment_count, 'comments title', 'nev-theme' ) ),
+					number_format_i18n( $nev_theme_comment_count ),
 					'<span>' . get_the_title() . '</span>'
 				);
 			}
@@ -63,7 +63,7 @@ if ( post_password_required() ) {
 		// If comments are closed and there are comments, let's leave a little note, shall we?
 		if ( ! comments_open() ) :
 			?>
-			<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'sample-theme' ); ?></p>
+			<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'nev-theme' ); ?></p>
 			<?php
 		endif;
 

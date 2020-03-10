@@ -1,12 +1,8 @@
-
+/* 
     button, input, optgroup, select, textarea {
         font-family: inherit;
         display: none;
-    }
-
-    .entry-title {
-        display: none;
-    }
+    } */
 
 /* 
     #primary-menu ul{
@@ -28,7 +24,7 @@
     .site-header{
 
         /* background-color: #FFDFB6; */
-        background-color: #FFF;
+        background-color: #FFDFB6;
     }
 
 #logo {
@@ -41,7 +37,7 @@
 
 
 .content-area{
-    background-color:#FFF;
+    background-color:#FFDFB6;
     padding:20px;
 }
 
@@ -54,7 +50,7 @@ li{
     list-style-type: none;
 }
 .site-header{
-    background-color:#FFF;
+    background-color:#FFDFB6;
 }
 #primary-menu{
     display: flex;
@@ -133,6 +129,12 @@ text-align: center;
 .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button{
 
     width: 100%;
+    text-transform: uppercase;
+}
+
+.woocommerce ul.products li.product a:hover{
+    color: indianred;
+    background-color: gainsboro;
 }
  /*  */
 
@@ -140,3 +142,56 @@ text-align: center;
 
 
 
+ .woocommerce div.product div.images img{
+     width: 70%;
+    position: relative;
+    right: -100px;
+ }
+
+
+ .entry-title {
+    color: indianred;
+    position: relative;
+    /* right: -100px; */
+    font-size: 2rem;
+    font-weight: 700;
+    
+ }
+ 
+
+
+ .woocommerce div.product form.cart .button {
+    /* vertical-align: middle;
+    float: left; */
+    width: 30%;
+    color: indianred;
+    background-color: gainsboro;
+}
+.woocommerce div.product div.images .woocommerce-product-gallery__trigger{
+
+  display: none;
+}
+
+.woocommerce #content table.cart td.actions .input-text, .woocommerce table.cart td.actions .input-text, .woocommerce-page #content table.cart td.actions .input-text, .woocommerce-page table.cart td.actions .input-text{
+
+    width: 100%;
+}
+.woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button{
+    color:indianred;
+}
+
+.woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt{
+
+    background-color:indianred;
+    font-size: 1rem;
+    color: ivory;
+}
+
+
+.wp-block-image img{
+    width: 80%;
+}
+
+.wp-block-media-text>figure>img, .wp-block-media-text>figure>video{
+    width: 80%;
+}

@@ -1,8 +1,8 @@
 <?php
 /**
- * Sample Theme Theme Customizer
+ * nev Theme Theme Customizer
  *
- * @package Sample_Theme
+ * @package nev_Theme
  */
 
 /**
@@ -10,29 +10,29 @@
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
-function sample_theme_customize_register( $wp_customize ) {
+function nev_theme_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 
 	if ( isset( $wp_customize->selective_refresh ) ) {
 		$wp_customize->selective_refresh->add_partial( 'blogname', array(
 			'selector'        => '.site-title a',
-			'render_callback' => 'sample_theme_customize_partial_blogname',
+			'render_callback' => 'nev_theme_customize_partial_blogname',
 		) );
 		$wp_customize->selective_refresh->add_partial( 'blogdescription', array(
 			'selector'        => '.site-description',
-			'render_callback' => 'sample_theme_customize_partial_blogdescription',
+			'render_callback' => 'nev_theme_customize_partial_blogdescription',
 		) );
 	}
 }
-add_action( 'customize_register', 'sample_theme_customize_register' );
+add_action( 'customize_register', 'nev_theme_customize_register' );
 
 /**
  * Render the site title for the selective refresh partial.
  *
  * @return void
  */
-function sample_theme_customize_partial_blogname() {
+function nev_theme_customize_partial_blogname() {
 	bloginfo( 'name' );
 }
 
@@ -41,14 +41,14 @@ function sample_theme_customize_partial_blogname() {
  *
  * @return void
  */
-function sample_theme_customize_partial_blogdescription() {
+function nev_theme_customize_partial_blogdescription() {
 	bloginfo( 'description' );
 }
 
 /**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
-function sample_theme_customize_preview_js() {
-	wp_enqueue_script( 'sample-theme-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20151215', true );
+function nev_theme_customize_preview_js() {
+	wp_enqueue_script( 'nev-theme-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20151215', true );
 }
-add_action( 'customize_preview_init', 'sample_theme_customize_preview_js' );
+add_action( 'customize_preview_init', 'nev_theme_customize_preview_js' );

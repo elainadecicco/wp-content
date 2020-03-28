@@ -1,4 +1,4 @@
-
+/* 
     button, input, optgroup, select, textarea {
         font-family: inherit;
         display: none;
@@ -28,6 +28,7 @@
 
     .site-header{
 
+        /* background-color: #FFDFB6; */
         background-color: #FFDFB6;
     }
 
@@ -41,10 +42,8 @@
 
 
 .content-area{
-    background-color:#ffe0b6;
+    background-color:#FFF;
     padding:20px;
-    
-
 }
 
 button, input, optgroup, select, textarea {
@@ -56,7 +55,7 @@ li{
     list-style-type: none;
 }
 .site-header{
-    background-color:#ffe0b6;
+    background-color:#FFF;
 }
 #primary-menu{
     display: flex;
@@ -76,16 +75,13 @@ li{
 #colophon{
     background-color: #e4ff95;
     width: 100%;
-    height: 100px;
-    display: flex;
-    justify-content: center;
+    height: 70px;
 }
-
-footer img {
-    width: 40%;
-    padding-top: 20px;
-    
-} 
+footer div{
+    float: right;
+    margin: 50px;
+    margin-top: -40px;
+}
 
 .wpcf7-form{
     width: 500px;
@@ -160,23 +156,9 @@ padding:100px;
     display:none;
 }
 
-.related.products{
-    background-color:white;
-    padding:20px;
-}
-.woocommerce #content div.product div.summary, .woocommerce div.product div.summary, .woocommerce-page #content div.product div.summary, .woocommerce-page div.product div.summary{
-    background-color:white;
-    padding:20px;
-    display:flex;
-    flex-direction:column;
-    justify-content: center;
-}
-.woocommerce-Price-amount{
-    font-size:2em;
-}
-.woocommerce div.product .woocommerce-tabs .panel{
-    background-color:white;
-    height:200px;
-    margin:0;
-    padding:20px;
-}
+ /*  */
+
+
+
+
+

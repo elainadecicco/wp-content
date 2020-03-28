@@ -22,8 +22,8 @@
 			?>
 			<div class="entry-meta">
 				<?php
-				// nev_theme_posted_on();
-				// nev_theme_posted_by();
+				nev_theme_posted_on();
+				nev_theme_posted_by();
 				?>
 			</div><!-- .entry-meta -->
 		<?php endif; ?>

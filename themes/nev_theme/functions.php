@@ -76,6 +76,8 @@
 
 //
 add_action( 'init', 'nev_theme_setup' );
+
+//registering two new menus
 function register_nev_menus(){
 	register_nav_menus( array(
 		'primary-menu' => __('Header Nav Menu'),
@@ -83,6 +85,22 @@ function register_nev_menus(){
 	) );
 }
 add_action('after_setup_theme', 'register_nev_menus');
+
+/**
+ *  use conditional check to only show set theme location
+ */
+if ( has_nav_menu( 'primary-menu' ) ) {
+	$args = array(
+		'theme_location' => 'primary-menu',
+	);
+	wp_nav_menu( $args );
+}
+//use fallback parameter to only display set theme location
+$args = array(
+	'theme_location' => 'footer-menu',
+	'fallback_cb'    => false,
+);
+wp_nav_menu( $args );
 /**
  * Making a function for custom logo and set the measurements for it
  */
@@ -105,6 +123,7 @@ add_action( 'after_setup_theme', 'nev_theme_custom_logo_Setup' );
 function nev_custom_header_setup() {
 	add_theme_support( 'custom-header', array(
 		'default-text-color' => '000',
+		'default-background-color' => '000', 
 		'width'              => 1000,
 		'height'             => 250,
 		'flex-width'         => true,
@@ -112,6 +131,20 @@ function nev_custom_header_setup() {
 	) );
 }
 add_action( 'after_setup_theme', 'nev_custom_header_setup' );
+
+/**
+ * making a function for footer_Setup
+ */
+function nev_custom_footer_setup() {
+	add_theme_support( 'custom-footer', array(
+		'default-text-color' => '000',
+		'width'              => 1000,
+		'height'             => 250,
+		'flex-width'         => true,
+		'flex-height'        => true,
+	) );
+}
+add_action( 'after_setup_theme', 'nev_custom_footer_setup' );
 
 /**
  * Making a function for a dynamic navigation menu

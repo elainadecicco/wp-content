@@ -1,8 +1,4 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
     button, input, optgroup, select, textarea {
         font-family: inherit;
         display: none;
@@ -11,6 +7,18 @@
     .entry-title {
         display: none;
     }
+   
+/* 
+    #primary-menu ul{
+        color: red;
+        list-style-type: none;
+        display: flex;
+        font-size: 22px;
+        padding-left: 450px;
+
+
+    } */
+    
     #logo {
         margin-top: 20px;
         width: 120px;
@@ -20,18 +28,20 @@
 
     .site-header{
 
-        /* background-color: #FFDFB6; */
-        background-color: #FFF;
+        background-color: #FFDFB6;
     }
 
 #logo {
     margin-left: 10px;
 }
+/* .site-main{
+    width:900px;
+} */
 
 
 
 .content-area{
-    background-color:#FFF;
+    background-color:#ffe0b6;
     padding:20px;
     
 
@@ -46,7 +56,7 @@ li{
     list-style-type: none;
 }
 .site-header{
-    background-color:#FFF;
+    background-color:#ffe0b6;
 }
 #primary-menu{
     display: flex;
@@ -82,7 +92,8 @@ footer img {
     margin-left: 420px;
 }
 
-.has-pale-pink-background-color {
+
+.has-pale-pink-background-color, .woocommerce_cart {
     padding:40px;
     max-width:950px;
     align-content: center;
@@ -96,36 +107,76 @@ footer img {
     
 }
 
-.wp-block-cover, .wp-block-cover-image{
+/* .wp-block-cover, .wp-block-cover-image{
     width:300px;
+} */
+.woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt{
+    background-color: #e4ff95;
+}
+.woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt:hover{
+    background-color:pink;
 }
 
-.woocommerce-loop-product__title{
-    color: #000;
-    font-size: 2000rem;
+.h3, h3 {
+    font-family: serif;
+}
+.menu a, .menu button, .menu input, .menu select{
+    color:black;
+}
+.woocommerce-MyAccount-navigation{
+    margin-top:20px;
+}
+.woocommerce-MyAccount-content{
+    margin-top:20px;
+}
+.woocommerce #content div.product div.summary, .woocommerce div.product div.summary, .woocommerce-page #content div.product div.summary, .woocommerce-page div.product div.summary {
+margin-top:80px;
+padding:100px;
+}
+.woocommerce div.product{
+    padding:100px;
+}
+.woocommerce div.product span.price{
+    font-size:2em;
+}
+.tabs wc-tabs{
+    display:none;
+}
+.woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button{
+    background-color:pink;
+    width: 100%;
+    text-transform: uppercase;
 }
 
-/* Product title font size */
-.woocommerce ul.products li.product .woocommerce-loop-category__title, .woocommerce ul.products li.product .woocommerce-loop-product__title, .woocommerce ul.products li.product h3 {
-    font-size: 18px;
+.woocommerce ul.products li.product a:hover{
+    color:palevioletred;
+    background-color: pink;
+    border:solid 2pt palevioletred;
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs{
+    display:none;
+}
+.comment-reply-title{
+    display:none;
 }
 
-
-
-/* 
-    #primary-menu ul{
-        color: red;
-        list-style-type: none;
-        display: flex;
-        font-size: 22px;
-        padding-left: 450px;
-    }
-
-    .site-main{
-    width:900px;
-} */ 
-
-
-
-
-
+.related.products{
+    background-color:white;
+    padding:20px;
+}
+.woocommerce #content div.product div.summary, .woocommerce div.product div.summary, .woocommerce-page #content div.product div.summary, .woocommerce-page div.product div.summary{
+    background-color:white;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+}
+.woocommerce-Price-amount{
+    font-size:2em;
+}
+.woocommerce div.product .woocommerce-tabs .panel{
+    background-color:white;
+    height:200px;
+    margin:0;
+    padding:20px;
+}

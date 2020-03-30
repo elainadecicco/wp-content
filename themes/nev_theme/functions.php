@@ -232,18 +232,53 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 /*///////////CUSTOM POST TYPE FUNCTION//////// */
 /* we named our custom post type function */
 function nev_custom_post_type() {
-    register_post_type('nev_events',
-                       array(
-                           'labels'      => array(
-                               'name'          => __('Events', 'textdomain'),
-                               'singular_name' => __('Event', 'textdomain'),
-                           ),
-                           'public'      => true,
-                           'has_archive' => true,
-                       )
-	);
-	/*we added an array of labels, so wordpress can start the CPT */
-}
-// add action will tell when to run the function, and specifically which one it is refering to.
-add_action('init', 'nev_custom_post_type');
+	$labels = array(
+		/*we added an array of labels, so wordpress can start the CPT */
+	'name' => 'Events',
+	'singular_name' => 'Event',
+	'add_new' => 'Add Item',
+	'all_items' => 'All Items',
+	'add_new_item' => 'Add New Item',
+	'edit_item' => 'Edit Item',
+	'new_item' => 'New Item',
+	'view_item' => 'View Item',
+	'search_item' => 'Search Item',
+	'not_found' => 'No Posts Found',
+	'parent_item_colon'=> 'Parent Item'
+);
+	$args = array(
+	'labels' => $labels,
+	'public' => true,
+	'has_archive' => true,
+	'publicity_queryable' => true,
+	'rewrite' => true,
+	'capability_type' => 'post',
+	'supports' => array(
+		'title',
+		'editor',
+		'excerpt',
+		'thumbnail',
+		'revisions',
+	),
+	'taxonomies'=> array('category','post_tag'),
+);
+register_post_type('events',$args);
 
+	
+}
+add_action('init', 'nev_custom_post_type');
+// add action will tell when to run the function, and specifically which one it is refering to.
+// 
+
+// function nev_custom_post_type() {
+//     register_post_type('nev_events',
+//                        array(
+//                            'labels'      => array(
+//                                'name'          => __('Events', 'textdomain'),
+//                                'singular_name' => __('Event', 'textdomain'),
+//                            ),
+//                            'public'      => true,
+//                            'has_archive' => true,
+//                        )
+// 	);
+// }

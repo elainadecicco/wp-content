@@ -254,6 +254,7 @@ function nev_custom_post_type() {
 	'publicity_queryable' => true,
 	'rewrite' => true,
 	'capability_type' => 'post',
+	'hierarchical' => false,
 	//enabling gutenburg style editor
 	'show_in_rest' => true,
     'supports' => array(
@@ -265,6 +266,8 @@ function nev_custom_post_type() {
 	/* The post has supports availible to enable excerpts, featured image, title, & post link  */
 	),
 	'taxonomies'=> array('category','post_tag'),
+	'excludes_from_search' => false,
+	
 	/* we can also assign this post a category and tag */
 );
 register_post_type('reviews',$args);

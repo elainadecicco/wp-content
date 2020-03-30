@@ -229,3 +229,18 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/*///////////CUSTOM POST TYPE FUNCTION//////// */
+
+function nev_custom_post_type() {
+    register_post_type('nev_events',
+                       array(
+                           'labels'      => array(
+                               'name'          => __('Events', 'textdomain'),
+                               'singular_name' => __('Event', 'textdomain'),
+                           ),
+                           'public'      => true,
+                           'has_archive' => true,
+                       )
+    );
+}
+add_action('init', 'nev_custom_post_type');

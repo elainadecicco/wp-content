@@ -41,11 +41,11 @@
 
 
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-
+                        <!-- adding logo -->
 						<img id="logo" src="<?php echo $header_img; ?>" alt="Logo" width="350px" height="200px" />
 
 					</a><!--- /*logo */ -->
-
+						
 					<nav id="site-navigation" class="main-navigation">
 
 					<?php

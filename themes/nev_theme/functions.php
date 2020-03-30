@@ -15,7 +15,8 @@
 	 * as indicating support for post thumbnails.
 	 */
 	
-		
+	
+	/*setting up custom theme */
 	function nev_theme_setup() {
 
 		if ( ! function_exists( 'nev_theme_setup' ) ) :

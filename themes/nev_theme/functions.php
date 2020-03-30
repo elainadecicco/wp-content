@@ -234,8 +234,8 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 function nev_custom_post_type() {
 	$labels = array(
 		/*we added an array of labels, so wordpress can start the CPT */
-	'name' => 'Events',
-	'singular_name' => 'Event',
+	'name' => 'Reviews',
+	'singular_name' => 'Review',
 	'add_new' => 'Add Item',
 	'all_items' => 'All Items',
 	'add_new_item' => 'Add New Item',
@@ -254,18 +254,20 @@ function nev_custom_post_type() {
 	'publicity_queryable' => true,
 	'rewrite' => true,
 	'capability_type' => 'post',
-	/* The post has supports availible to enable excerpts, featured image, title, & post link  */
-	'supports' => array(
-		'title',
+	//enabling gutenburg style editor
+	'show_in_rest' => true,
+    'supports' => array(
 		'editor',
+		'title',
 		'excerpt',
 		'thumbnail',
-		'revisions',
+		'revisions'
+	/* The post has supports availible to enable excerpts, featured image, title, & post link  */
 	),
 	'taxonomies'=> array('category','post_tag'),
 	/* we can also assign this post a category and tag */
 );
-register_post_type('events',$args);
+register_post_type('reviews',$args);
 }
 add_action('init', 'nev_custom_post_type');
 // add action will tell when to run the function, and specifically which one it is refering to.

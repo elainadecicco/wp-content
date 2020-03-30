@@ -182,6 +182,12 @@ padding:100px;
 @media only screen and (max-width: 600px) {
  
 
-    
+    #logo{
+
+     position: relative;
+     left: 50%;
+    transform: translateX(-50%);
+    }
+
   }
   

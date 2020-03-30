@@ -246,6 +246,7 @@ function nev_custom_post_type() {
 	'not_found' => 'No Posts Found',
 	'parent_item_colon'=> 'Parent Item'
 );
+	/* we also added an array of args to make the post custom and specific. */
 	$args = array(
 	'labels' => $labels,
 	'public' => true,
@@ -253,6 +254,7 @@ function nev_custom_post_type() {
 	'publicity_queryable' => true,
 	'rewrite' => true,
 	'capability_type' => 'post',
+	/* The post has supports availible to enable excerpts, featured image, title, & post link  */
 	'supports' => array(
 		'title',
 		'editor',
@@ -261,24 +263,9 @@ function nev_custom_post_type() {
 		'revisions',
 	),
 	'taxonomies'=> array('category','post_tag'),
+	/* we can also assign this post a category and tag */
 );
 register_post_type('events',$args);
-
-	
 }
 add_action('init', 'nev_custom_post_type');
 // add action will tell when to run the function, and specifically which one it is refering to.
-// 
-
-// function nev_custom_post_type() {
-//     register_post_type('nev_events',
-//                        array(
-//                            'labels'      => array(
-//                                'name'          => __('Events', 'textdomain'),
-//                                'singular_name' => __('Event', 'textdomain'),
-//                            ),
-//                            'public'      => true,
-//                            'has_archive' => true,
-//                        )
-// 	);
-// }

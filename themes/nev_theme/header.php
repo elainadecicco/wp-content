@@ -51,7 +51,7 @@
 					<nav id="site-navigation" class="main-navigation">
 
 					<?php
-					//controls for navigation
+					//controls for 
 						wp_nav_menu( array(
 							'menu_id' => 'primary-menu',
 							'container' => '',

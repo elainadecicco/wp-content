@@ -32,6 +32,7 @@
 
 		<body <?php body_class(); ?>>
 
+			<!--entire page container-->
 			<div id="page" class="site">
 
 				<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( '', 'nev-theme' ); ?>
@@ -46,9 +47,11 @@
 
 					</a><!--- /*logo */ -->
 						
+					<!--navigation bar-->
 					<nav id="site-navigation" class="main-navigation">
 
 					<?php
+					//controls for navigation
 						wp_nav_menu( array(
 							'menu_id' => 'primary-menu',
 							'container' => '',

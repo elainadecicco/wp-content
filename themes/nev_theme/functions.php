@@ -230,7 +230,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 }
 
 /*///////////CUSTOM POST TYPE FUNCTION//////// */
-
+/* we named our custom post type function */
 function nev_custom_post_type() {
     register_post_type('nev_events',
                        array(
@@ -241,6 +241,9 @@ function nev_custom_post_type() {
                            'public'      => true,
                            'has_archive' => true,
                        )
-    );
+	);
+	/*we added an array of labels, so wordpress can start the CPT */
 }
+// add action will tell when to run the function, and specifically which one it is refering to.
 add_action('init', 'nev_custom_post_type');
+

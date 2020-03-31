@@ -23,7 +23,7 @@
 		<!-- add other socials by copying the code below -->
 			<?php if (get_theme_mod('nev_theme_facebook_url')) { ?>
 				<!-- add image file to link -->
-				<a style="margin-left: 10px;" href="#<?php echo get_theme_mod('nev_theme_facebook_url');?>"><img src="<?php echo get_template_directory_uri() . '/assets/img/facebook.svg'; ?>" alt="<?php echo esc_html__('Facebook', 'nev_theme');?>" width="40" height="40"/></a>
+			<a style="margin-left: 10px;" href="#<?php echo get_theme_mod('nev_theme_facebook_url');?>"><img src="<?php echo get_template_directory_uri() . '/assets/img/facebook.svg'; ?>" alt="<?php echo esc_html__('Facebook', 'nev_theme');?>" width="40" height="40"/></a>
 			<?php } ?>
 		<?php } ?>
 		<?php if (get_theme_mod('nev_theme_instagram_url')){ ?>
@@ -41,7 +41,36 @@
 			<?php } ?>
 		<?php } ?>
 </div>
-		<!-- .site-info -->
+<?php 
+$args = array( 'posts_per_page' => 3 );
+ 
+// the query
+$sec_query = new WP_Query( $args );
+?>
+ 
+<?php if ( $sec_query->have_posts() ) : ?>
+ 
+<!-- start of the loop. the_post() sets the global $post variable -->
+<?php while ( $sec_query->have_posts() ) : $sec_query->the_post(); ?>
+ 
+    <!-- template tags will return values from the post in the $sec_query object
+	<?php the_permalink() ?>
+    <?php the_title(); ?>
+    <?php the_excerpt(); ?>
+	<?php the_post_thumbnail('thumbnail'); ?>
+ 
+<?php endwhile; ?>
+
+<!-- end of the loop -->
+ 
+<!-- reset global post variable. After this point, we are back to the Main Query object -->
+<?php wp_reset_postdata(); ?>
+ 
+<?php else: ?>
+ 
+<?php _e( 'Sorry, no posts matched your criteria.' ); ?>
+ 
+<?php endif; ?>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

@@ -19,7 +19,7 @@
 
 	<!-- /*logos */ -->
 	<div>
-	<?php if (get_theme_mod('nev_theme_facebook_url')){ ?>
+	<?php if (get_theme_mod('nev_theme_facebook_url')) { ?>
 		<!-- add other socials by copying the code below -->
 			<?php if (get_theme_mod('nev_theme_facebook_url')) { ?>
 				<!-- add image file to link -->
@@ -53,14 +53,14 @@ $sec_query = new WP_Query( $args );
 <?php if ( $sec_query->have_posts() ) : ?>
  
 <!-- start of the loop. the_post() sets the global $post variable -->
-<?php while ( $sec_query->have_posts() ) : $sec_query->the_post(); ?>
+<?php while ( $sec_query->have_posts() ) : $sec_query->the_post(); { ?> 
  
     <!-- template tags will return values from the post in the $sec_query object
-	<?php the_permalink() ?>
+	<div><?php the_permalink() ?>
     <?php the_title(); ?>
     <?php the_excerpt(); ?>
-	<?php the_post_thumbnail('thumbnail'); ?>
- 
+	<?php the_post_thumbnail('thumbnail'); ?><div>
+	<?php } ?>
 <?php endwhile; ?><!-- end of the loop -->
  
 <!-- reset global post variable. After this point, we are back to the Main Query object -->

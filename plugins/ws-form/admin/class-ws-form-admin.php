@@ -167,12 +167,12 @@
 			);
 
 			// Form class
-			wp_register_script($this->plugin_name . '-form-common', plugin_dir_url(__DIR__) . 'shared/js/ws-form.js', array('jquery'), $this->version, false);
+			wp_register_script($this->plugin_name . '-form-common', plugin_dir_url(__DIR__) . 'shared/js/ws-form.js', array('jquery'), $this->version, true);
 			wp_localize_script($this->plugin_name . '-form-common', 'ws_form_settings', $ws_form_settings);
 			wp_enqueue_script($this->plugin_name . '-form-common');
 
 			// Form class - Admin
-			wp_register_script($this->plugin_name, plugin_dir_url(__DIR__) . 'admin/js/ws-form-admin.js', array('jquery', $this->plugin_name . '-form-common'), $this->version, false);
+			wp_register_script($this->plugin_name, plugin_dir_url(__DIR__) . 'admin/js/ws-form-admin.js', array('jquery', $this->plugin_name . '-form-common'), $this->version, true);
 			wp_enqueue_script($this->plugin_name);
 
 			// Scripts by hook
@@ -220,7 +220,7 @@
 					// Intro
 					if($this->intro) {
 
-						wp_enqueue_script($this->plugin_name . '-intro', plugin_dir_url(__FILE__) . 'js/external/introjs/intro.min.js', false, $this->version, false);
+						wp_enqueue_script($this->plugin_name . '-intro', plugin_dir_url(__FILE__) . 'js/external/introjs/intro.min.js', false, $this->version, true);
 					}
 
 					break;
@@ -251,7 +251,15 @@
 				case 'index.php' :
 
 					// Chart
-					wp_enqueue_script($this->plugin_name . '-chart', plugin_dir_url(__FILE__) . 'js/external/chart/Chart.min.js', array('jquery'), $this->version, false);
+					wp_enqueue_script($this->plugin_name . '-chart', plugin_dir_url(__FILE__) . 'js/external/chart/Chart.min.js', array('jquery'), $this->version, true);
+					break;
+
+				// Plugins
+				case 'plugins.php' :
+
+					// Feedback
+					add_action('admin_footer', array($this, 'feedback'));
+					break;
 			}
 
 			// Enqueue admin count submit unread script
@@ -271,6 +279,225 @@
 				wp_localize_script($this->plugin_name . '-admin-count-submit-unread', 'ws_form_admin_count_submit_read_settings', $ws_form_admin_count_submit_read_settings);
 				wp_enqueue_script($this->plugin_name . '-admin-count-submit-unread');
 			}
+		}
+
+		// Feedback
+		public function feedback() {
+?>
+<script>
+
+	(function($) {
+
+		'use strict';
+
+		var wsf_feedback_deactivate_url = false;
+
+		// Close modal
+		function wsf_feedback_modal_close() {
+
+			$('#wsf-feedback-modal').hide();
+			$('#wsf-feedback-modal-backdrop').hide();
+			$(document).keydown = null;
+
+			if(wsf_feedback_deactivate_url !== false) {
+
+				location.href = wsf_feedback_deactivate_url;
+			}
+		}
+
+		// On load
+		$(function() {
+
+			// Modal open
+			$('[data-slug="ws-form"] .deactivate a, [data-slug="ws-form-pro"] .deactivate a').click(function(e) {
+
+				e.preventDefault();
+
+				wsf_feedback_deactivate_url = $(this).attr('href');
+
+				// Show modal
+				$('#wsf-feedback-modal-backdrop').show();
+				$('#wsf-feedback-modal').show();
+				$('[data-action="wsf-feedback-submit"]').attr('disabled', false);
+
+				// Escape key
+				$(document).keydown(function(e) {
+
+					if(e.keyCode == 27) { 
+
+						// Close modal
+						wsf_feedback_modal_close();
+					}
+				});
+			});
+
+			// Click modal backdrop
+			$(document).on('click', '#wsf-feedback-modal-backdrop', function(e) {
+
+				// Close modal
+				wsf_feedback_modal_close();
+			});
+
+			// Click close button
+			$('[data-action="wsf-close"]').click(function() {
+
+				// Close modal
+				wsf_feedback_modal_close();
+			});
+
+			// Toggle fields
+			$('[name="wsf_feedback_reason"]').change(function() {
+
+				var feedback_reason_other = $('#wsf-feedback-reason-other').is(':checked');
+
+				if(feedback_reason_other) {
+
+					$('#wsf-feedback-reason-other-text').show().focus();
+
+				} else {
+
+					$('#wsf-feedback-reason-other-text').hide();
+				}
+
+				var feedback_reason_found_better_plugin = $('#wsf-feedback-reason-found-better-plugin').is(':checked');
+
+				if(feedback_reason_found_better_plugin) {
+
+					$('#wsf-feedback-reason-found-better-plugin-select').show().focus();
+
+				} else {
+
+					$('#wsf-feedback-reason-found-better-plugin-select').hide();
+				}
+
+				var feedback_reason_error = $('#wsf-feedback-reason-error').is(':checked');
+
+				if(feedback_reason_error) {
+
+					$('#wsf-feedback-reason-error-text').show();
+
+				} else {
+
+					$('#wsf-feedback-reason-error-text').hide();
+				}
+			});
+
+			// Submit
+			$('[data-action="wsf-feedback-submit"]').click(function() {
+
+				$(this).attr('disabled', '');
+
+				// Build form data
+				var params = {
+
+					'feedback_reason': $('[name="wsf_feedback_reason"]:checked').val(),
+					'feedback_reason_found_better_plugin': $('[name="wsf_feedback_reason_found_better_plugin"]').val(),
+					'feedback_reason_other': $('[name="wsf_feedback_reason_other"]').val(),
+				};
+
+				var ajax_request = {
+
+					url: '<?php echo WS_Form_Common::get_api_path('helper/deactivate_feedback_submit/'); ?>',
+					data: params,
+					type: 'POST',
+					beforeSend: function(xhr) {
+
+						xhr.setRequestHeader('X-WP-Nonce', '<?php echo wp_create_nonce('wp_rest'); ?>');
+					},
+					complete: function(data){
+
+						wsf_feedback_modal_close();
+					}
+				};
+
+				$.ajax(ajax_request);
+			});
+
+			// Defaults
+			$('#wsf-feedback-reason-other-text').hide();
+			$('#wsf-feedback-reason-found-better-plugin-select').hide();
+			$('#wsf-feedback-reason-error-text').hide();
+		});
+
+	})(jQuery);
+
+</script>
+
+<!-- WS Form - Modal - Feedback -->
+<div id="wsf-feedback-modal-backdrop" class="wsf-modal-backdrop" style="display:none;"></div>
+
+<div id="wsf-feedback-modal" class="wsf-modal" style="display:none; margin-left:-200px; margin-top:-180px; width: 400px;">
+
+<div id="wsf-feedback">
+
+<!-- WS Form - Modal - Feedback - Header -->
+<div class="wsf-modal-title"><?php echo WS_Form_Common::get_admin_icon('#002e5f', false); ?><?php _e('Feedback', 'ws-form'); ?></div>
+<div class="wsf-modal-close" data-action="wsf-close" title="<?php _e('Close', 'ws-form'); ?>"></div>
+<!-- /WS Form - Modal - Feedback - Header -->
+
+<!-- WS Form - Modal - Feedback - Content -->
+<div class="wsf-modal-content">
+
+<form id="wsf-feedback-form">
+
+<fieldset>
+
+<p><?php echo sprintf(__('We would greatly appreciate your feedback about why you are deactivating %s. Thank you for your help!', 'ws-form'), WS_FORM_NAME_PRESENTABLE); ?></p>
+
+<label><input type="radio" name="wsf_feedback_reason" value="Upgraded" /> <?php echo sprintf(__('I\'m upgrading to <a href="%s" target="_blank">WS Form PRO</a>', 'ws-form'), WS_Form_Common::get_plugin_website_url('', 'plugins_deactivate')); ?></label>
+<label><input type="radio" name="wsf_feedback_reason" value="Temporary" /> <?php _e('Temporarily deactivating', 'ws-form'); ?></label>
+
+<label><input type="radio" id="wsf-feedback-reason-error" name="wsf_feedback_reason" value="Error" /> <?php _e('The plugin did not work', 'ws-form'); ?></label>
+
+<p id="wsf-feedback-reason-error-text"><em>Need help? <?php echo sprintf(__('<a href="%s" target="_blank">Get Support</a>', 'ws-form'), WS_Form_Common::get_plugin_website_url('/support/', 'plugins_deactivate')); ?></em></p>
+
+<label><input type="radio" name="wsf_feedback_reason" value="No Longer Need" /> <?php _e('I no longer need the plugin', 'ws-form'); ?></label>
+
+<label><input type="radio" id="wsf-feedback-reason-found-better-plugin" name="wsf_feedback_reason" value="Found Better Plugin" /> <?php _e('I found a better plugin', 'ws-form'); ?></label>
+
+<select id="wsf-feedback-reason-found-better-plugin-select" name="wsf_feedback_reason_found_better_plugin">
+<option value=""><?php _e('Select...', 'ws-form'); ?></option>
+<option value="Caldera Forms"><?php _e('Caldera Forms', 'ws-form'); ?></option>
+<option value="Contact Form 7"><?php _e('Contact Form 7', 'ws-form'); ?></option>
+<option value="Formidable Forms"><?php _e('Formidable Forms', 'ws-form'); ?></option>
+<option value="Gravity Forms"><?php _e('Gravity Forms', 'ws-form'); ?></option>
+<option value="Ninja Forms"><?php _e('Ninja Forms', 'ws-form'); ?></option>
+<option value="Visual Form Builder"><?php _e('Visual Form Builder', 'ws-form'); ?></option>
+<option value="weForms"><?php _e('weForms', 'ws-form'); ?></option>
+<option value="WPForms"><?php _e('WPForms', 'ws-form'); ?></option>
+<option value="Other"><?php _e('Other', 'ws-form'); ?></option>
+</select>
+
+<label><input type="radio" id="wsf-feedback-reason-other" name="wsf_feedback_reason" value="Other" /> <?php _e('Other', 'ws-form'); ?></label>
+
+<textarea id="wsf-feedback-reason-other-text" name="wsf_feedback_reason_other" placeholder="<?php _e('Please specify...', 'ws-form'); ?>" rows="3"></textarea>
+
+</fieldset>
+
+</form>
+
+</div>
+<!-- /WS Form - Modal - Feedback - Content -->
+
+<!-- WS Form - Modal - Feedback - Buttons -->
+<div class="wsf-modal-buttons">
+
+<div id="wsf-modal-buttons-cancel">
+<a data-action="wsf-close"><?php _e('Skip &amp; Deactivate', 'ws-form'); ?></a>
+</div>
+
+<div id="wsf-modal-buttons-feedback-submit">
+<button class="button button-primary" data-action="wsf-feedback-submit"><?php _e('Submit &amp; Deactivate', 'ws-form'); ?></button>
+</div>
+
+</div>
+<!-- /WS Form - Modal - Feedback - Buttons -->
+
+</div>
+
+</div>
+<!-- /WS Form - Modal - Feedback -->
+<?php
 		}
 
 		// Customize register
@@ -390,7 +617,7 @@
 <div id="wsf-add-form">
 
 <!-- WS Form - Modal - Add Form - Header -->
-<div class="wsf-modal-title"><?php _e('Add WS Form', 'ws-form'); ?></div>
+<div class="wsf-modal-title"><?php echo WS_Form_Common::get_admin_icon('#002e5f', false); ?><?php _e('Add WS Form', 'ws-form'); ?></div>
 <div class="wsf-modal-close" data-action="wsf-close" title="<?php _e('Close', 'ws-form'); ?>"></div>
 <!-- /WS Form - Modal - Add Form - Header -->
 
@@ -406,8 +633,7 @@
 
 	if($forms) {
 ?>
-<p><?php _e('Select the form you want to add...', 'ws-form'); ?></p>
-
+<label for="wsf-post-add-form-id"><?php _e('Select the form you want to add...', 'ws-form'); ?></label>
 <select id="wsf-post-add-form-id">
 <?php
 		foreach($forms as $form) {
@@ -925,6 +1151,7 @@
 
 						define('DISABLE_NAG_NOTICES', true);
 					}
+
 					break;
 			}
 

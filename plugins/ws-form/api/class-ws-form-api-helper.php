@@ -268,7 +268,63 @@
 			if($api_response_error = is_wp_error($response)) {
 
 				// Handle error
-				$api_response_error_message = $response->get_error_message();;
+				$api_response_error_message = $response->get_error_message();
+				$api_response_headers = array();
+				$api_response_body = '';
+				$api_response_http_code = 0;
+
+			} else {
+
+				// Handle response
+				$api_response_error_message = '';
+				$api_response_headers = wp_remote_retrieve_headers($response);
+				$api_response_body = wp_remote_retrieve_body($response);
+				$api_response_http_code = wp_remote_retrieve_response_code($response);
+			}
+
+			// Return response
+			return array('error' => $api_response_error, 'error_message' => $api_response_error_message, 'response' => $api_response_body, 'http_code' => $api_response_http_code);
+		}
+
+		// API - Deactivate feedback submit
+		public function api_deactivate_feedback_submit() {
+
+			// User capability check
+			if(!WS_Form_Common::can_user('manage_options_wsform')) { parent::api_access_denied(); }
+
+			// Read support inquiry fields
+			$data = array(
+
+				'feedback_reason'						=> WS_Form_Common::get_query_var('feedback_reason'),
+				'feedback_reason_found_better_plugin'	=> WS_Form_Common::get_query_var('feedback_reason_found_better_plugin'),
+				'feedback_reason_other'					=> WS_Form_Common::get_query_var('feedback_reason_other')
+			);
+
+			// Filters
+			$timeout = apply_filters('wsf_api_call_timeout', WS_FORM_API_CALL_TIMEOUT);
+			$sslverify = apply_filters('wsf_api_call_verify_ssl',WS_FORM_API_CALL_VERIFY_SSL);
+
+			// Build args
+			$args = array(
+
+				'method'		=>	'POST',
+				'body'			=>	http_build_query($data),
+				'user-agent'	=>	'WSForm/' . WS_FORM_VERSION . ' (wsform.com)',
+				'timeout'		=>	$timeout,
+				'sslverify'		=>	$sslverify
+			);
+
+			// URL
+			$url = 'https://wsform.com/plugin-support/deactivate_feedback.php';
+
+			// Call using Wordpress wp_remote_get
+			$response = wp_remote_get($url, $args);
+
+			// Check for error
+			if($api_response_error = is_wp_error($response)) {
+
+				// Handle error
+				$api_response_error_message = $response->get_error_message();
 				$api_response_headers = array();
 				$api_response_body = '';
 				$api_response_http_code = 0;
@@ -294,9 +350,7 @@
 
 			// Output CSS
 			$ws_form_css = new WS_Form_CSS();
-			$css = $ws_form_css->get_admin();
-
-			echo $css;
+			echo $ws_form_css->get_admin();
 
 			exit;
 		}
@@ -309,9 +363,7 @@
 
 			// Output CSS
 			$ws_form_css = new WS_Form_CSS();
-			$css = $ws_form_css->get_public();
-
-			echo $css;
+			echo $ws_form_css->get_public();
 
 			exit;
 		}
@@ -324,7 +376,7 @@
 
 			// Output CSS
 			$ws_form_css = new WS_Form_CSS();
-			$ws_form_css->render_skin();
+			echo $ws_form_css->get_skin();
 
 			exit;
 		}
@@ -337,9 +389,7 @@
 
 			// Output CSS
 			$ws_form_css = new WS_Form_CSS();
-			$css = $ws_form_css->get_email();
-
-			echo $css;
+			echo $ws_form_css->get_email();
 
 			exit;
 		}
@@ -351,10 +401,10 @@
 			header("Content-type: text/css; charset: UTF-8");
 
 			// Caching
-			$expires = 	WS_Form_Common::option_get('css_cache_duration', 86400);
+			$css_cache_duration = 	WS_Form_Common::option_get('css_cache_duration', 86400);
 			header("Pragma: public");
-			header("Cache-Control: maxage=" . $expires);
-			header('Expires: ' . gmdate('D, d M Y H:i:s', time()+$expires) . ' GMT');
+			header("Cache-Control: maxage=" . $css_cache_duration);
+			header('Expires: ' . gmdate('D, d M Y H:i:s', time() + $css_cache_duration) . ' GMT');
 		}
 
 		// API - File download
@@ -463,6 +513,14 @@
 			$variables = WS_Form_Config::get_parse_variable_help($form_id, false);
 
 			return $variables;
+		}
+
+		// API - Review nag dismiss
+		public function api_review_nag_dismiss($parameters) {
+
+			WS_Form_Common::option_set('review_nag', true);
+
+			return array('error' => false);
 		}
 
 		// API - Test API is working

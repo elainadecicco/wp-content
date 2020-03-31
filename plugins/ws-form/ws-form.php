@@ -9,7 +9,7 @@
 	 * Plugin Name:       WS Form
 	 * Plugin URI:        https://wsform.com/
 	 * Description:       Build Better WordPress Forms
-	 * Version:           1.5.4
+	 * Version:           1.5.13
 	 * Author:            Westguard Solutions
 	 * Author URI:        https://wsform.com/
 	 * License:           GPL-2.0+
@@ -33,7 +33,7 @@
 
 		// Constants
 		define('WS_FORM_NAME', 'ws-form');
-		define('WS_FORM_VERSION', '1.5.4');
+		define('WS_FORM_VERSION', '1.5.13');
 		define('WS_FORM_NAME_PRESENTABLE', 'WS Form');
 		define('WS_FORM_EDITION', 'basic');
 		define('WS_FORM_PLUGIN_BASENAME_COUNTERPART', 'ws-form-pro/ws-form.php');
@@ -91,6 +91,8 @@
 		define('WS_FORM_SECTION_REPEATABLE_DELIMITER_SECTION', ',');
 		define('WS_FORM_SECTION_REPEATABLE_DELIMITER_ROW', ';');
 		define('WS_FORM_SECTION_REPEATABLE_DELIMTIER_SUBMIT', '<br />');
+
+		define('WS_FORM_REVIEW_NAG_DURATION', 14);
 	}
 
 	function activate_ws_form() {

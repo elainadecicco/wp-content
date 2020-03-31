@@ -42,7 +42,7 @@
 
 
 .content-area{
-    background-color:#FFDFB6;
+    background-color:#FFF;
     padding:20px;
 }
 
@@ -55,7 +55,7 @@ li{
     list-style-type: none;
 }
 .site-header{
-    background-color:#FFDFB6;
+    background-color:#FFF;
 }
 #primary-menu{
     display: flex;
@@ -156,6 +156,14 @@ padding:100px;
     display:none;
 }
 
+<<<<<<< HEAD
+ /*  */
+
+
+
+
+
+=======
 .related.products{
     background-color:white;
     padding:20px;
@@ -177,3 +185,4 @@ padding:100px;
     padding:20px;
 }
 /* comment*/
+>>>>>>> master

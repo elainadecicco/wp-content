@@ -757,8 +757,6 @@
 					// Build meta data
 					$meta_data = array('id' => $field_id, 'value' => $value, 'type' => $field_type, 'section_id' => $section_id, 'repeatable_index' => $repeatable_index);
 
-//					print_r($meta_data);
-
 					// Add to submit meta
 					$submit_meta[$meta_key] = $meta_data;
 

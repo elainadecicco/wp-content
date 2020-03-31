@@ -68,7 +68,7 @@
 	endif;
 	}
 //adding google fonts
- 	 function wpb_add_google_fonts() {
+function wpb_add_google_fonts() {
 	wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css?family=Spartan&display=swap" rel="stylesheet"', false ); 
 	}
 		add_action( 'wp_enqueue_scripts', 'wpb_add_google_fonts' );
@@ -274,3 +274,18 @@ register_post_type('reviews',$args);
 }
 add_action('init', 'nev_custom_post_type');
 // add action will tell when to run the function, and specifically which one it is refering to.
+
+
+function nev_conditional_tag() {
+	if ( nev_custom_header_setup() ):
+		echo 'Welcome, registered user!';
+	else:
+		echo 'Welcome, visitor!';
+	endif;	
+}
+
+add_action('after_setup_theme', 'nev_conditional_tag');
+
+
+
+

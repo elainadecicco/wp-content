@@ -137,163 +137,167 @@
 
 		'use strict';
 
-		var wsf_obj = new $.WS_Form();
-		var wsf_welcome_banner = $('#wsf-welcome');
-
-		// Slide buttons
-		$('button.wsf-welcome-button', wsf_welcome_banner).click(function() {
-
-			user_action($(this), $(this).attr('data-value'));
-		});
-
-		// Slide select
-		$('select', wsf_welcome_banner).change(function() {
-
-			user_action($(this), $(this).val());
-		});
-
-		function user_action(obj, value) {
-
-			var slide_next_id = obj.attr('data-slide-next-id');
-
-			// Button actions
-			var action_button = obj.attr('data-action');
-			switch(action_button) {
-
-				// Set framework type
-				case 'wsf-framework-set' :
-
-					if(framework_detected !== false) {
-
-						params_setup['framework'] = framework_detected.type;
-					}
-					break;
-
-				// Set mode
-				case 'wsf-mode-set' :
-
-					params_setup['mode'] = value;
-					break;
-
-				// Add form
-				case 'wsf-form-add' :
-
-					var iframe = $('#wsf-video-welcome');
-					var player = new Vimeo.Player(iframe[0]);
-					player.pause();
-					location.href='<?php echo WS_Form_Common::get_admin_url('ws-form-add'); ?>';
-					break;
-
-				// Try again
-				case 'wsf-try-again' :
-
-					location.href='<?php echo WS_Form_Common::get_admin_url('ws-form-welcome'); ?>';
-					break;
-			}
-
-			var slide_current = obj.closest('.wsf-welcome-slide');
-
-			slide_current.fadeOut(200, function() {
-
-				// Get next slide object
-				var slide_next = $('.wsf-welcome-slide[data-id="' + slide_next_id + '"]');
-
-				// Process action
-				var action_slide = slide_next.attr('data-action');
-				switch(action_slide) {
-
-					case 'wsf-setup-push' :
-
-						// Turn on loader
-						wsf_obj.loader_on();
-
-						// Push setup via API
-						wsf_obj.setup_push(params_setup, function() {
-
-							// Success
-							slide_next.fadeIn(200);
-
-							// Start video
-/*							if(slide_next_id == '5') {
-
-								setTimeout(function() {
-
-									var iframe = $('#wsf-video-welcome');
-									var player = new Vimeo.Player(iframe[0]);
-									player.play();
-
-								}, 200);
-							}
-*/
-							// Turn off loader
-							wsf_obj.loader_off();
-
-						}, function() {
-
-							// Error
-							slide_current.fadeIn(200);
-
-							// Turn off loader
-							wsf_obj.loader_off();
-						});
-
-						break;
-
-					default :
-
-						slide_next.fadeIn(200);
-				}
-			});
-		}
-
 		// On load
 		$(function() {
 
-			// Turn on loader
-			wsf_obj.loader_on();
+			var wsf_obj = new $.WS_Form();
+			var wsf_welcome_banner = $('#wsf-welcome');
 
-			// Detect framework
-			wsf_obj.api_test(function() {
+			// Slide buttons
+			$('button.wsf-welcome-button', wsf_welcome_banner).click(function() {
 
-				// API test successful
-				var slide_next = $('.wsf-welcome-slide[data-id="1"]');
-				slide_next.fadeIn(200);
+				user_action($(this), $(this).attr('data-value'));
+			});
+
+			// Slide select
+			$('select', wsf_welcome_banner).change(function() {
+
+				user_action($(this), $(this).val());
+			});
+
+			function user_action(obj, value) {
+
+				var slide_next_id = obj.attr('data-slide-next-id');
+
+				// Button actions
+				var action_button = obj.attr('data-action');
+				switch(action_button) {
+
+					// Set framework type
+					case 'wsf-framework-set' :
+
+						if(framework_detected !== false) {
+
+							params_setup['framework'] = framework_detected.type;
+						}
+						break;
+
+					// Set mode
+					case 'wsf-mode-set' :
+
+						params_setup['mode'] = value;
+						break;
+
+					// Add form
+					case 'wsf-form-add' :
+
+						var iframe = $('#wsf-video-welcome');
+						var player = new Vimeo.Player(iframe[0]);
+						player.pause();
+						location.href='<?php echo WS_Form_Common::get_admin_url('ws-form-add'); ?>';
+						break;
+
+					// Try again
+					case 'wsf-try-again' :
+
+						location.href='<?php echo WS_Form_Common::get_admin_url('ws-form-welcome'); ?>';
+						break;
+				}
+
+				var slide_current = obj.closest('.wsf-welcome-slide');
+
+				slide_current.fadeOut(200, function() {
+
+					// Get next slide object
+					var slide_next = $('.wsf-welcome-slide[data-id="' + slide_next_id + '"]');
+
+					// Process action
+					var action_slide = slide_next.attr('data-action');
+					switch(action_slide) {
+
+						case 'wsf-setup-push' :
+
+							// Turn on loader
+							wsf_obj.loader_on();
+
+							// Push setup via API
+							wsf_obj.setup_push(params_setup, function() {
+
+								// Success
+								slide_next.fadeIn(200);
+
+								// Start video
+	/*							if(slide_next_id == '5') {
+
+									setTimeout(function() {
+
+										var iframe = $('#wsf-video-welcome');
+										var player = new Vimeo.Player(iframe[0]);
+										player.play();
+
+									}, 200);
+								}
+	*/
+								// Turn off loader
+								wsf_obj.loader_off();
+
+							}, function() {
+
+								// Error
+								slide_current.fadeIn(200);
+
+								// Turn off loader
+								wsf_obj.loader_off();
+							});
+
+							break;
+
+						default :
+
+							slide_next.fadeIn(200);
+					}
+				});
+			}
+
+			// On load
+			$(function() {
+
+				// Turn on loader
+				wsf_obj.loader_on();
 
 				// Detect framework
-				wsf_obj.framework_detect(function(framework) {
+				wsf_obj.api_test(function() {
 
-					// Remember framework detected
-					framework_detected = framework;
+					// API test successful
+					var slide_next = $('.wsf-welcome-slide[data-id="1"]');
+					slide_next.fadeIn(200);
 
-					// Set framework name
-					$('#wsf-welcome-framework').html(framework.name);
+					// Detect framework
+					wsf_obj.framework_detect(function(framework) {
 
-					// Reconfigure path
-					$('.wsf-welcome-slide[data-id="2"] .wsf-welcome-button[data-value="advanced"]').attr('data-slide-next-id', '3');
+						// Remember framework detected
+						framework_detected = framework;
 
-					// Turn off loader
-					wsf_obj.loader_off();
+						// Set framework name
+						$('#wsf-welcome-framework').html(framework.name);
+
+						// Reconfigure path
+						$('.wsf-welcome-slide[data-id="2"] .wsf-welcome-button[data-value="advanced"]').attr('data-slide-next-id', '3');
+
+						// Turn off loader
+						wsf_obj.loader_off();
+
+					}, function() {
+
+						// Turn off loader
+						wsf_obj.loader_off();
+					});
 
 				}, function() {
 
-					// Turn off loader
-					wsf_obj.loader_off();
-				});
+					// API test failed, show error page
+					$('.wsf-welcome-slide[data-id="1"]').fadeOut(200, function() {
 
-			}, function() {
+						// Hide all other slides just in case
+						$('.wsf-welcome-slide').hide();
 
-				// API test failed, show error page
-				$('.wsf-welcome-slide[data-id="1"]').fadeOut(200, function() {
+						// Show error slide
+						var slide_next = $('.wsf-welcome-slide[data-id="6"]');
+						slide_next.fadeIn(200);
 
-					// Hide all other slides just in case
-					$('.wsf-welcome-slide').hide();
-
-					// Show error slide
-					var slide_next = $('.wsf-welcome-slide[data-id="6"]');
-					slide_next.fadeIn(200);
-
-					// Turn off loader
-					wsf_obj.loader_off();
+						// Turn off loader
+						wsf_obj.loader_off();
+					});
 				});
 			});
 		});

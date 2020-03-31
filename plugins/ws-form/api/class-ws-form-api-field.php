@@ -381,7 +381,7 @@
 
 						default :
 
-							$data[$column_index] = utf8_encode($field);
+							$data[$column_index] = $field;
 							$column_index++;
 					}
 				}

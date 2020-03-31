@@ -68,6 +68,19 @@
 						) );
 						?>
 						
+		<?php
+
+
+		function nev_conditional_tag() {
+			if ( nev_custom_header_setup() ):
+				echo 'Welcome, registered user!';
+			else:
+				
+			endif;	
+		}
+
+		add_action('after_setup_theme', 'nev_conditional_tag'); 
+		?>
 
 					</nav><!-- #site-navigation -->
 

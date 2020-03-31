@@ -45,11 +45,11 @@
 		}
 
 		// Admin messages - Render single
-		public static function admin_message_render($message, $type = 'notice-success', $dismissible = true, $nag_notice = false) {
+		public static function admin_message_render($message, $type = 'notice-success', $dismissible = true, $nag_notice = false, $class = '') {
 
 			if(!(defined('DISABLE_NAG_NOTICES') && DISABLE_NAG_NOTICES && $nag_notice)) {
 
-				$notice = '<div class="notice ' . $type . (($dismissible) ? ' is-dismissible' : '') . '"><p>' . str_replace("\n", "<br />\n", $message) . '</p></div>';
+				$notice = '<div class="notice ' . $type . ($dismissible ? ' is-dismissible' : '') . ($class ? ' '  . $class : '') . '"><p>' . str_replace("\n", "<br />\n", $message) . '</p></div>';
 
 				echo $notice;
 			}
@@ -465,7 +465,7 @@
 					break;
 			}
 
-			$debug_enabled = apply_filters('wsf-debug-enabled', $debug_enabled);
+			$debug_enabled = apply_filters('wsf_debug_enabled', $debug_enabled);
 
 			return $debug_enabled;
 		}
@@ -2016,6 +2016,42 @@
 <!-- Loader -->
 <div id="wsf-loader"></div>
 <!-- /Loader -->
+<?php
+		}
+
+		// Review
+		public static function review() {
+
+			// Review nag
+			$review_nag = WS_Form_Common::option_get('review_nag', false);
+			if($review_nag) { return; }
+
+			// Determine if review nag should be shown
+			$install_timestamp = intval(WS_Form_Common::option_get('install_timestamp', time(), true));
+			$review_nag_show = (time() > ($install_timestamp + (WS_FORM_REVIEW_NAG_DURATION * 86400)));
+			if(!$review_nag_show) { return; }
+
+			// Show nag
+			self::admin_message_render(sprintf(__('<p><strong>Thank you for using %1$s!</strong></p><p>We hope you have enjoyed using the plugin. Positive reviews from awesome users like you help others to feel confident about choosing %1$s too. If convenient, we would greatly appreciate you sharing your happy experiences with the WordPress community. Thank you in advance for helping us out!</p><p class="buttons"><a href="https://wordpress.org/support/plugin/ws-form/reviews/#new-post" class="button button-primary" onclick="wsf_review_nag_dismiss();" target="_blank">Leave a review</a> <a href="#" class="button" onclick="wsf_review_nag_dismiss();">No thanks</a></p>', 'ws-form'), WS_FORM_NAME_PRESENTABLE), 'notice-success', false, false, 'wsf-review');
+?>
+<script>
+
+	function wsf_review_nag_dismiss() {
+
+		(function($) {
+
+			'use strict';
+
+			// Hide nag
+			$('.wsf-review').hide();
+
+			// Call AJAX to prevent review nag appearing again
+			$.ajax({ method: 'POST', url: '<?php echo WS_Form_Common::get_api_path('helper/review_nag/dismiss/'); ?>' });
+
+		})(jQuery);
+	}
+
+</script>
 <?php
 		}
 

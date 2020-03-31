@@ -1,14 +1,8 @@
 <?php
 /**
-<<<<<<< HEAD
- * nevTheme Theme Customizer
- *
- * @package nevTheme
-=======
  * nev Theme Theme Customizer
  *
  * @package nev_Theme
->>>>>>> master
  */
 
 /**
@@ -108,9 +102,7 @@ function nev_theme_customize_register( $wp_customize ) {
 		),
 	) );
 }
-//adding action to render the customize_register
-add_action( 'customize_register', 'nev_theme_customize_register' );
-add_action( 'customize_register', 'nev_theme_customize_register' );
+add_action( 'customize_register', 'sample_theme_customize_register' );
 
 /**
  * Render the site title for the selective refresh partial.

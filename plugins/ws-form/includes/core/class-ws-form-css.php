@@ -209,7 +209,10 @@
 				unset($breakpoints_inner[$breakpoint_inner_key_to_delete]);
 			}
 
-			return $css_return;
+			// Minify
+			$css_minify = WS_Form_Common::option_get('css_minify', false);
+
+			return $css_minify ? self::minify($css_return) : $css_return;
 		}
 
 		// Public
@@ -329,7 +332,7 @@
 					// Build CSS selectors
 					$css_return .= $css_indent . $class_single;
 
-					$column_width_percentage = ($column_index / $columns) * 100;
+					$column_width_percentage = round(($column_index / $columns) * 100, 6);
 
 					$css_return .= " {";
 
@@ -434,7 +437,10 @@
 			$css_return .= "\talign-self: center;\n";
 			$css_return .= "}\n\n";
 
-			return $css_return;
+			// Minify
+			$css_minify = WS_Form_Common::option_get('css_minify', false);
+
+			return $css_minify ? self::minify($css_return) : $css_return;
 		}
 
 		// Skin
@@ -515,7 +521,7 @@
 			$form_hover_border_color = $color_primary;
 			$form_hover_color = $form_color;
 			$form_label_color = $form_color;
-			$form_placeholder_color = $color_default_lighter;
+			$form_placeholder_color = $color_default_light;
 			$form_spacing_horizontal = $spacing_small;
 			$form_spacing_vertical = ($spacing_small * .85);
 			$form_transition = $transition; // true | false
@@ -1854,28 +1860,42 @@ button.wsf-button:disabled {
 	color: <?php echo $color_danger; ?>;
 }
 <?php
+		}
 
-	$cheese_background_image = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PGRlZnM+PHBhdGggaWQ9ImEiIGQ9Ik0wIDBoMTAwdjEwMEgweiIvPjxsaW5lYXJHcmFkaWVudCB4MT0iMTMuMiUiIHkxPSIxNC42JSIgeDI9Ijg1LjUlIiB5Mj0iODguMiUiIGlkPSJkIj48c3RvcCBzdG9wLWNvbG9yPSIjRUFCNzU4IiBvZmZzZXQ9IjAlIi8+PHN0b3Agc3RvcC1jb2xvcj0iI0ZFRTJBMyIgb2Zmc2V0PSIxMDAlIi8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgeDE9IjE0LjglIiB5MT0iMTMuMSUiIHgyPSI4Ni40JSIgeTI9Ijg1LjklIiBpZD0iYyI+PHN0b3Agc3RvcC1jb2xvcj0iI0ZBRTNBMCIgb2Zmc2V0PSIwJSIvPjxzdG9wIHN0b3AtY29sb3I9IiNGRUYzQ0QiIG9mZnNldD0iMTAwJSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IHgxPSI2LjQlIiB5MT0iMTIuOSUiIHgyPSIyOC4yJSIgeTI9IjI2LjIlIiBpZD0iZSI+PHN0b3Agc3RvcC1jb2xvcj0iI0UxQUIzRiIgb2Zmc2V0PSIwJSIvPjxzdG9wIHN0b3AtY29sb3I9IiNGQUUzQTAiIG9mZnNldD0iMTAwJSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IHgxPSI2LjQlIiB5MT0iMTIuOSUiIHgyPSIyMC41JSIgeTI9IjQyJSIgaWQ9ImYiPjxzdG9wIHN0b3AtY29sb3I9IiNFMUFCM0YiIG9mZnNldD0iMCUiLz48c3RvcCBzdG9wLWNvbG9yPSIjRkFFM0EwIiBvZmZzZXQ9IjEwMCUiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCB4MT0iMTYuMSUiIHkxPSIxNC40JSIgeDI9Ijg2LjQlIiB5Mj0iODUuOSUiIGlkPSJnIj48c3RvcCBzdG9wLWNvbG9yPSIjRkFFM0EwIiBvZmZzZXQ9IjAlIi8+PHN0b3Agc3RvcC1jb2xvcj0iI0ZFRjNDRCIgb2Zmc2V0PSIxMDAlIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48bWFzayBpZD0iYiIgZmlsbD0iI2ZmZiI+PHVzZSB4bGluazpocmVmPSIjYSIvPjwvbWFzaz48cGF0aCBmaWxsPSIjRkFFM0EwIiBtYXNrPSJ1cmwoI2IpIiBkPSJNMCAwaDEwMHYxMDBIMHoiLz48Y2lyY2xlIHN0cm9rZT0idXJsKCNjKSIgZmlsbD0idXJsKCNkKSIgbWFzaz0idXJsKCNiKSIgY3g9IjM3LjUiIGN5PSI2Mi41IiByPSI0LjUiLz48Y2lyY2xlIHN0cm9rZT0idXJsKCNjKSIgZmlsbD0idXJsKCNkKSIgbWFzaz0idXJsKCNiKSIgY3g9IjM3LjUiIGN5PSI2Mi41IiByPSI0LjUiLz48Y2lyY2xlIHN0cm9rZT0idXJsKCNjKSIgZmlsbD0idXJsKCNkKSIgbWFzaz0idXJsKCNiKSIgY3g9IjIyLjUiIGN5PSI2MC41IiByPSI1LjUiLz48Y2lyY2xlIHN0cm9rZT0idXJsKCNjKSIgZmlsbD0idXJsKCNkKSIgbWFzaz0idXJsKCNiKSIgY3g9IjE0LjUiIGN5PSI1MC41IiByPSIzLjUiLz48Y2lyY2xlIHN0cm9rZT0idXJsKCNjKSIgZmlsbD0idXJsKCNkKSIgbWFzaz0idXJsKCNiKSIgY3g9IjI1LjUiIGN5PSI0MC41IiByPSI1LjUiLz48Y2lyY2xlIHN0cm9rZT0idXJsKCNjKSIgZmlsbD0idXJsKCNkKSIgbWFzaz0idXJsKCNiKSIgY3g9IjgiIGN5PSI0MiIgcj0iNCIvPjxjaXJjbGUgc3Ryb2tlPSJ1cmwoI2MpIiBmaWxsPSJ1cmwoI2QpIiBtYXNrPSJ1cmwoI2IpIiBjeD0iMTEuNSIgY3k9IjY2LjUiIHI9IjQuNSIvPjxjaXJjbGUgc3Ryb2tlPSJ1cmwoI2MpIiBmaWxsPSJ1cmwoI2QpIiBtYXNrPSJ1cmwoI2IpIiBjeD0iODUuNSIgY3k9IjMzLjUiIHI9IjUuNSIvPjxjaXJjbGUgc3Ryb2tlPSJ1cmwoI2MpIiBmaWxsPSJ1cmwoI2QpIiBtYXNrPSJ1cmwoI2IpIiBjeD0iMjAiIGN5PSI4MSIgcj0iOSIvPjxjaXJjbGUgc3Ryb2tlPSJ1cmwoI2MpIiBmaWxsPSJ1cmwoI2QpIiBtYXNrPSJ1cmwoI2IpIiBjeD0iMzQuNSIgY3k9IjgxLjUiIHI9IjIuNSIvPjxjaXJjbGUgc3Ryb2tlPSJ1cmwoI2MpIiBmaWxsPSJ1cmwoI2QpIiBtYXNrPSJ1cmwoI2IpIiBjeD0iNy41IiBjeT0iOTIuNSIgcj0iMi41Ii8+PGNpcmNsZSBzdHJva2U9InVybCgjYykiIGZpbGw9InVybCgjZCkiIG1hc2s9InVybCgjYikiIGN4PSI1MCIgY3k9IjcyIiByPSI4Ii8+PGNpcmNsZSBzdHJva2U9InVybCgjYykiIGZpbGw9InVybCgjZCkiIG1hc2s9InVybCgjYikiIGN4PSIxNSIgY3k9IjIzIiByPSIxMyIvPjxlbGxpcHNlIHN0cm9rZT0idXJsKCNlKSIgbWFzaz0idXJsKCNiKSIgY3g9IjEwMCIgY3k9IjU1IiByeD0iMTIiIHJ5PSIxMCIvPjxjaXJjbGUgc3Ryb2tlPSJ1cmwoI2YpIiBtYXNrPSJ1cmwoI2IpIiBjeD0iMzgiIGN5PSI5OCIgcj0iMTAiLz48Y2lyY2xlIHN0cm9rZT0idXJsKCNnKSIgZmlsbD0idXJsKCNkKSIgbWFzaz0idXJsKCNiKSIgY3g9IjkxIiBjeT0iOSIgcj0iOCIvPjxjaXJjbGUgc3Ryb2tlPSJ1cmwoI2MpIiBmaWxsPSJ1cmwoI2QpIiBtYXNrPSJ1cmwoI2IpIiBjeD0iNzkiIGN5PSI1NCIgcj0iNCIvPjxjaXJjbGUgc3Ryb2tlPSJ1cmwoI2MpIiBmaWxsPSJ1cmwoI2QpIiBtYXNrPSJ1cmwoI2IpIiBjeD0iODYiIGN5PSI0NiIgcj0iMiIvPjxjaXJjbGUgc3Ryb2tlPSJ1cmwoI2MpIiBmaWxsPSJ1cmwoI2QpIiBtYXNrPSJ1cmwoI2IpIiBjeD0iNjgiIGN5PSI5NiIgcj0iMyIvPjxjaXJjbGUgc3Ryb2tlPSJ1cmwoI2MpIiBmaWxsPSJ1cmwoI2QpIiBtYXNrPSJ1cmwoI2IpIiBjeD0iNzAuNSIgY3k9IjcwLjUiIHI9IjUuNSIvPjxjaXJjbGUgc3Ryb2tlPSJ1cmwoI2MpIiBmaWxsPSJ1cmwoI2QpIiBtYXNrPSJ1cmwoI2IpIiBjeD0iNC41IiBjeT0iNzYuNSIgcj0iMi41Ii8+PGNpcmNsZSBzdHJva2U9InVybCgjYykiIGZpbGw9InVybCgjZCkiIG1hc2s9InVybCgjYikiIGN4PSIyMC41IiBjeT0iNS41IiByPSIzLjUiLz48Y2lyY2xlIHN0cm9rZT0idXJsKCNjKSIgZmlsbD0idXJsKCNkKSIgbWFzaz0idXJsKCNiKSIgY3g9IjQuNSIgY3k9IjguNSIgcj0iMi41Ii8+PGNpcmNsZSBzdHJva2U9InVybCgjYykiIGZpbGw9InVybCgjZCkiIG1hc2s9InVybCgjYikiIGN4PSI0NSIgY3k9IjUwIiByPSI2Ii8+PGNpcmNsZSBzdHJva2U9InVybCgjYykiIGZpbGw9InVybCgjZCkiIG1hc2s9InVybCgjYikiIGN4PSI4MS41IiBjeT0iNjkuNSIgcj0iMS41Ii8+PGNpcmNsZSBzdHJva2U9InVybCgjYykiIGZpbGw9InVybCgjZCkiIG1hc2s9InVybCgjYikiIGN4PSI0Ni41IiBjeT0iMzYuNSIgcj0iMS41Ii8+PGNpcmNsZSBzdHJva2U9InVybCgjYykiIGZpbGw9InVybCgjZCkiIG1hc2s9InVybCgjYikiIGN4PSIzNCIgY3k9IjMzIiByPSIyIi8+PGNpcmNsZSBzdHJva2U9InVybCgjYykiIGZpbGw9InVybCgjZCkiIG1hc2s9InVybCgjYikiIGN4PSIzOC41IiBjeT0iNDIuNSIgcj0iMS41Ii8+PGNpcmNsZSBzdHJva2U9InVybCgjYykiIGZpbGw9InVybCgjZCkiIG1hc2s9InVybCgjYikiIGN4PSI2NiIgY3k9Ijg0IiByPSI0Ii8+PGNpcmNsZSBzdHJva2U9InVybCgjYykiIGZpbGw9InVybCgjZCkiIG1hc2s9InVybCgjYikiIGN4PSI3NS41IiBjeT0iMjAuNSIgcj0iNS41Ii8+PGNpcmNsZSBzdHJva2U9InVybCgjYykiIGZpbGw9InVybCgjZCkiIG1hc2s9InVybCgjYikiIGN4PSI2MC41IiBjeT0iMTguNSIgcj0iNC41Ii8+PGNpcmNsZSBzdHJva2U9InVybCgjYykiIGZpbGw9InVybCgjZCkiIG1hc2s9InVybCgjYikiIGN4PSI1Ni41IiBjeT0iNi41IiByPSIzLjUiLz48Y2lyY2xlIHN0cm9rZT0idXJsKCNjKSIgZmlsbD0idXJsKCNkKSIgbWFzaz0idXJsKCNiKSIgY3g9Ijc2LjUiIGN5PSIzLjUiIHI9IjIuNSIvPjxjaXJjbGUgc3Ryb2tlPSJ1cmwoI2MpIiBmaWxsPSJ1cmwoI2QpIiBtYXNrPSJ1cmwoI2IpIiBjeD0iNjEuNSIgY3k9IjM3LjUiIHI9IjEyLjUiLz48Y2lyY2xlIHN0cm9rZT0idXJsKCNjKSIgZmlsbD0idXJsKCNkKSIgbWFzaz0idXJsKCNiKSIgY3g9Ijg0LjUiIGN5PSI4My41IiByPSIxMS41Ii8+PGNpcmNsZSBzdHJva2U9InVybCgjYykiIGZpbGw9InVybCgjZCkiIG1hc2s9InVybCgjYikiIGN4PSI2MS41IiBjeT0iMzcuNSIgcj0iMTIuNSIvPjxjaXJjbGUgc3Ryb2tlPSJ1cmwoI2MpIiBmaWxsLW9wYWNpdHk9Ii44IiBmaWxsPSJ1cmwoI2QpIiBtYXNrPSJ1cmwoI2IpIiBjeD0iNDEuNSIgY3k9IjIwLjUiIHI9IjkuNSIvPjxjaXJjbGUgc3Ryb2tlPSJ1cmwoI2MpIiBmaWxsPSJ1cmwoI2QpIiBtYXNrPSJ1cmwoI2IpIiBjeD0iOTUiIGN5PSIyNCIgcj0iNCIvPjwvZz48L3N2Zz4=';
-?>
-input[type=email].wsf-field.cheese,
-input[type=number].wsf-field.cheese,
-input[type=tel].wsf-field.cheese,
-input[type=text].wsf-field.cheese,
-input[type=search].wsf-field.cheese,
-input[type=url].wsf-field.cheese,
-select.wsf-field.cheese,
-textarea.wsf-field.cheese,
-input[type=checkbox].wsf-field.cheese + label.wsf-label:before,
-input[type=radio].wsf-field.cheese + label.wsf-label:before {
-	background-image: url(<?php echo $cheese_background_image; ?>);
-	border-color: orange;
-}
-<?php
+		public function get_skin() {
+
+			ob_start();
+			self::render_skin();
+			$css_return = ob_get_contents();
+			ob_end_clean();
+
+			// Minify
+			$css_minify = WS_Form_Common::option_get('css_minify', false);
+
+			return $css_minify ? self::minify($css_return) : $css_return;
+		}
+
+		public function inline($css) {
+
+			// Output CSS
+			return sprintf('<style>%s</style>', $css);
+		}
+
+		public function minify($css) {
+
+			// Basic minify
+			$css = preg_replace('/\/\*((?!\*\/).)*\*\//', '', $css);
+			$css = preg_replace('/\s{2,}/', ' ', $css);
+			$css = preg_replace('/\s*([:;{}])\s*/', '$1', $css);
+			$css = preg_replace('/;}/', '}', $css);
+			$css = str_replace(array("\r\n","\r","\n","\t",'  ','    ','    '),"",$css);
+
+			return $css;
 		}
 
 		public function get_email() {
 
-			$css = '	svg { max-width: 100%; }
+			$css_return = '	svg { max-width: 100%; }
 
 	h1, h2, h3, h4 {
 
@@ -1928,6 +1948,9 @@ input[type=radio].wsf-field.cheese + label.wsf-label:before {
 	}
 			';
 
-			return $css;
+			// Minify
+			$css_minify = WS_Form_Common::option_get('css_minify', false);
+
+			return $css_minify ? self::minify($css_return) : $css_return;
 		}
 	}

@@ -40,6 +40,15 @@
 
 				<header id="masthead" class="site-header">
 
+					<div class="site-branding">
+						<?php
+						if ( $nev_theme_description || is_customize_preview() ) :
+						?>
+						<p class="site-description">
+							<?php echo $nev_theme_description; /* WPCS: xss ok. */ ?>
+						</p>
+						<?php endif; ?>
+					</div><!-- .site-branding -->
 
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
                         <!-- adding logo -->
@@ -59,6 +68,19 @@
 						) );
 						?>
 						
+		<?php
+
+
+		function nev_conditional_tag() {
+			if ( nev_custom_header_setup() ):
+				echo 'Welcome, registered user!';
+			else:
+				
+			endif;	
+		}
+
+		add_action('after_setup_theme', 'nev_conditional_tag'); 
+		?>
 
 					</nav><!-- #site-navigation -->
 

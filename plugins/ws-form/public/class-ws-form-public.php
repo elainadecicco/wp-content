@@ -11,6 +11,9 @@
 		// Customizer
 		private $customizer;
 
+		// CSS inline
+		private $css_inline;
+
 		// Form index (Incremented for each rendered with a short code)
 		public $form_instance = 1;
 
@@ -26,25 +29,41 @@
 		// Footer JS
 		public $footer_js = '';
 
+		// Registered
+
 		// Enqueuing
-		public $enqueue_wp_editor = false;
-		public $enqueue_wp_html_editor = false;
-		public $enqueue_input_mask = false;
-		public $enqueue_sortable = false;
-		public $enqueue_signature = false;
-		public $enqueue_datetime_picker = false;
-		public $enqueue_color_picker = false;
-		public $enqueue_password_strength = false;
+		public $enqueue_css_layout = false;
+		public $enqueue_css_skin = false;
+		public $enqueue_css_debug = false;
+		public $enqueue_js_form_common = false;
+		public $enqueue_js_form_public = false;
+		public $enqueue_js_form_debug = false;
+		public $enqueue_js_wp_editor = false;
+		public $enqueue_js_wp_html_editor = false;
+		public $enqueue_js_input_mask = false;
+		public $enqueue_js_sortable = false;
+		public $enqueue_js_signature = false;
+		public $enqueue_js_datetime_picker = false;
+		public $enqueue_js_color_picker = false;
+		public $enqueue_js_password_strength = false;
 
 		// Enqueued
-		public $enqueued_wp_editor = false;
-		public $enqueued_wp_html_editor = false;
-		public $enqueued_input_mask = false;
-		public $enqueued_sortable = false;
-		public $enqueued_signature = false;
-		public $enqueued_datetime_picker = false;
-		public $enqueued_color_picker = false;
-		public $enqueued_password_strength = false;
+		public $enqueued_all = false;
+		public $enqueued_core = false;
+		public $enqueued_css_layout = false;
+		public $enqueued_css_skin = false;
+		public $enqueued_css_debug = false;
+		public $enqueued_js_form_common = false;
+		public $enqueued_js_form_public = false;
+		public $enqueued_js_form_debug = false;
+		public $enqueued_js_wp_editor = false;
+		public $enqueued_js_wp_html_editor = false;
+		public $enqueued_js_input_mask = false;
+		public $enqueued_js_sortable = false;
+		public $enqueued_js_signature = false;
+		public $enqueued_js_datetime_picker = false;
+		public $enqueued_js_color_picker = false;
+		public $enqueued_js_password_strength = false;
 
 		// Config filtering
 		public $field_types = array();
@@ -55,6 +74,52 @@
 			$this->plugin_name = $plugin_name;
 			$this->version = $version;
 			$this->customizer = (WS_Form_Common::get_query_var('customize_theme') !== '');
+			$this->css_inline = (WS_Form_Common::option_get('css_inline') !== '');
+
+			add_action('wsf_enqueue_all', array($this, 'enqueue_all'), 10, 0);
+			add_action('wsf_enqueue_core', array($this, 'enqueue_core'), 10, 0);
+		}
+
+		public function enqueue_core() {
+
+			if(!$this->enqueued_core) {
+
+				// Set filters to true
+				add_filter('wsf_enqueue_css_layout', function($enqueue) { return true; }, 99999, 1);
+				add_filter('wsf_enqueue_css_skin', function($enqueue) { return true; }, 99999, 1);
+				add_filter('wsf_enqueue_js_form_common', function($enqueue) { return true; }, 99999, 1);
+				add_filter('wsf_enqueue_js_form_public', function($enqueue) { return true; }, 99999, 1);
+
+				// Process enqueues
+				self::enqueues();
+
+				$this->enqueued_core = true;
+			}
+		}
+
+		public function enqueue_all() {
+
+			if(!$this->enqueued_all) {
+
+				// Set filters to true
+				add_filter('wsf_enqueue_css_layout', function($enqueue) { return true; }, 99999, 1);
+				add_filter('wsf_enqueue_css_skin', function($enqueue) { return true; }, 99999, 1);
+				add_filter('wsf_enqueue_js_form_common', function($enqueue) { return true; }, 99999, 1);
+				add_filter('wsf_enqueue_js_form_public', function($enqueue) { return true; }, 99999, 1);
+				add_filter('wsf_enqueue_js_wp_editor', function($enqueue) { return true; }, 99999, 1);
+				add_filter('wsf_enqueue_js_wp_html_editor', function($enqueue) { return true; }, 99999, 1);
+				add_filter('wsf_enqueue_js_input_mask', function($enqueue) { return true; }, 99999, 1);
+				add_filter('wsf_enqueue_js_sortable', function($enqueue) { return true; }, 99999, 1);
+				add_filter('wsf_enqueue_js_signature', function($enqueue) { return true; }, 99999, 1);
+				add_filter('wsf_enqueue_js_datetime_picker', function($enqueue) { return true; }, 99999, 1);
+				add_filter('wsf_enqueue_js_color_picker', function($enqueue) { return true; }, 99999, 1);
+				add_filter('wsf_enqueue_js_password_strength', function($enqueue) { return true; }, 99999, 1);
+
+				// Process enqueues
+				self::enqueues();
+
+				$this->enqueued_all = true;
+			}
 		}
 
 		public function init() {
@@ -75,36 +140,19 @@
 
 
 			// CSS - Layout
-			if((WS_Form_Common::option_get('css_layout', true)) && (WS_Form_Common::option_get('framework', 'ws-form') == 'ws-form')) {
+			if(WS_Form_Common::option_get('css_layout', true) && (WS_Form_Common::option_get('framework', 'ws-form') == 'ws-form')) {
 
-				wp_enqueue_style($this->plugin_name . '-css-layout', WS_Form_Common::get_api_path('helper/ws_form_css'), array(), $this->version, 'all');
+				wp_register_style($this->plugin_name . '-css-layout', WS_Form_Common::get_api_path('helper/ws_form_css'), array(), $this->version, 'all');
+				$this->enqueue_css_layout = true;
 			}
 
 
 			// CSS - Skin
-			if((WS_Form_Common::option_get('css_skin', true)) && (WS_Form_Common::option_get('framework', 'ws-form') == 'ws-form')) {
+			if(WS_Form_Common::option_get('css_skin', true) && (WS_Form_Common::option_get('framework', 'ws-form') == 'ws-form')) {
 
-				if($this->customizer) {
-
-					add_action('wp_head', array($this, 'public_css_inline'));
-
-				} else {
-
-					wp_enqueue_style($this->plugin_name . '-css-skin', WS_Form_Common::get_api_path('helper/ws_form_css_skin'), array(), $this->version, 'all');
-				}
+				wp_register_style($this->plugin_name . '-css-skin', WS_Form_Common::get_api_path('helper/ws_form_css_skin'), array(), $this->version, 'all');
+				$this->enqueue_css_skin = true;
 			}
-		}
-
-		// Public CSS - Render inline (For customizer only)
-		public function public_css_inline() {
-
-			echo '<style>';
-
-			// Output CSS
-			$ws_form_css = new WS_Form_CSS();
-			$ws_form_css->render_skin();
-
-			echo '</style>';
 		}
 
 		// Register the JavaScript for the public-facing side of the site.
@@ -119,12 +167,15 @@
 			// Form class
 			wp_register_script($this->plugin_name . '-form-common', plugin_dir_url(__DIR__) . 'shared/js/ws-form.js', array('jquery'), $this->version, $jquery_footer);
 			wp_localize_script($this->plugin_name . '-form-common', 'ws_form_settings', $ws_form_settings);
-			wp_enqueue_script($this->plugin_name . '-form-common');
+			$this->enqueue_js_form_common = true;
 
 			// Form class - Public
 			wp_register_script($this->plugin_name . '-form-public', plugin_dir_url(__DIR__) . 'public/js/ws-form-public.js', array($this->plugin_name . '-form-common'), $this->version, $jquery_footer);
-			wp_enqueue_script($this->plugin_name . '-form-public');
+			$this->enqueue_js_form_public = true;
 
+
+			// Initial Enqueues
+			self::enqueues();
 		}
 
 		// Shortcode: ws_form
@@ -180,7 +231,7 @@
 				if($form_array !== false) {
 
 					// Set up footer enqueues
-					self::wp_footer_enqueues_init($form_array);
+					self::form_enqueues($form_array);
 				}
 
 				// Get form HTML
@@ -219,12 +270,10 @@
 		}
 
 		// Footer scripts - Initialize
-		public function wp_footer_enqueues_init($form_array) {
- 
+		public function form_enqueues($form_array) {
+
 			// Field types
 			$field_types = WS_Form_Config::get_field_types_flat();
-
- 			// Check to see if modal pop-up software installed, if so we should just enqueue everything
 
  			// Get form fields
 			$fields = WS_Form_Common::get_fields_from_form(json_decode(json_encode($form_array)));
@@ -241,10 +290,10 @@
 				$this->field_types[] = $field_type;
 
 				// Check to see if an input_mask is set
-				if(!$this->enqueue_input_mask) {
+				if(!$this->enqueue_js_input_mask) {
 
 					$input_mask = WS_Form_Common::get_object_meta_value($field, 'input_mask', '');
-					if($input_mask !== '') { $this->enqueue_input_mask = true; }
+					if($input_mask !== '') { $this->enqueue_js_input_mask = true; }
 
 				}
 
@@ -255,12 +304,18 @@
 					case 'textarea' :
 
 						$input_type_textarea = WS_Form_Common::get_object_meta_value($field, 'input_type_textarea', '');
-						if($input_type_textarea == 'tinymce') { $this->enqueue_wp_editor = true; }
-						if($input_type_textarea == 'html') { $this->enqueue_wp_html_editor = true; }
+						if($input_type_textarea == 'tinymce') { $this->enqueue_js_wp_editor = true; }
+						if($input_type_textarea == 'html') { $this->enqueue_js_wp_html_editor = true; }
 
 						break;
 				}
 			}
+
+			// Enqueues
+			self::enqueues();
+		}
+
+		public function enqueues() {
 
 			// Enqueue in footer?
 			$jquery_footer = (WS_Form_Common::option_get('jquery_footer', '') == 'on');
@@ -268,40 +323,100 @@
 			// External scripts
 			$external = WS_Form_Config::get_external();
 
-			// Input Mask
-			if(!$this->enqueued_input_mask && apply_filters('wsf_enqueue_input_mask', $this->enqueue_input_mask)) {
+			// CSS - Layout
+			if(!$this->enqueued_css_layout && apply_filters('wsf_enqueue_css_layout', $this->enqueue_css_layout)) {
+
+				if($this->customizer || $this->css_inline) {
+
+					add_action('wp_footer', function() {
+
+						// Output public CSS
+						$ws_form_css = new WS_Form_CSS();
+						$css = $ws_form_css->get_public();
+						echo $ws_form_css->inline($css);
+
+					}, 100);
+
+				} else {
+
+					wp_enqueue_style($this->plugin_name . '-css-layout');
+				}
+	
+				$this->enqueued_css_layout = true;
+			}
+
+			// CSS - Skin
+			if(!$this->enqueued_css_skin && apply_filters('wsf_enqueue_css_skin', $this->enqueue_css_skin)) {
+
+				if($this->customizer || $this->css_inline) {
+
+					add_action('wp_footer', function() {
+
+						// Output public CSS
+						$ws_form_css = new WS_Form_CSS();
+						$css = $ws_form_css->get_skin();
+						echo $ws_form_css->inline($css);
+
+					}, 100);
+
+				} else {
+
+					wp_enqueue_style($this->plugin_name . '-css-skin');
+				}
+
+				$this->enqueued_css_skin = true;
+			}
+
+			// JS - Common
+			if(!$this->enqueued_js_form_common && apply_filters('wsf_enqueue_js_form_common', $this->enqueue_js_form_common)) {
+
+				wp_enqueue_script($this->plugin_name . '-form-common');
+
+				$this->enqueued_js_form_common = true;
+			}
+
+			// JS - Public
+			if(!$this->enqueued_js_form_public && apply_filters('wsf_enqueue_js_form_public', $this->enqueue_js_form_public)) {
+
+				wp_enqueue_script($this->plugin_name . '-form-public');
+
+				$this->enqueued_js_form_public = true;
+			}
+
+			// JS - Input Mask
+			if(!$this->enqueued_js_input_mask && apply_filters('wsf_enqueue_js_input_mask', $this->enqueue_js_input_mask)) {
 
 				// External - Input Mask Bundle
 				wp_enqueue_script($this->plugin_name . '-external-inputmask', $external['inputmask_js'], array('jquery'), null, $jquery_footer);
-				$this->enqueued_input_mask = true;
+				$this->enqueued_js_input_mask = true;
 			}
 			// If a textarea exists in a form that requires wp_editor or wp_code_editor, enqueue the scripts
 			global $wp_version;
 
 			// WP Editor
 			if(
-				!$this->enqueued_wp_editor && 
-				apply_filters('wsf_enqueue_wp_editor', $this->enqueue_wp_editor) &&
+				!$this->enqueued_js_wp_editor && 
+				apply_filters('wsf_enqueue_js_wp_editor', $this->enqueue_js_wp_editor) &&
 				version_compare($wp_version, '4.8', '>=') &&
 				user_can_richedit()
 			) {
 
 				wp_enqueue_editor();
 
-				$this->enqueued_wp_editor = true;
+				$this->enqueued_js_wp_editor = true;
 			}
 
 			// WP HTML Editor
 			if(
-				!$this->enqueued_wp_html_editor && 
-				apply_filters('wsf_enqueue_wp_html_editor', $this->enqueue_wp_html_editor) &&
+				!$this->enqueued_js_wp_html_editor && 
+				apply_filters('wsf_enqueue_js_wp_html_editor', $this->enqueue_js_wp_html_editor) &&
 				version_compare($wp_version, '4.9', '>=') &&
 				(!is_user_logged_in() || (wp_get_current_user()->syntax_highlighting))
 			) {
 
 				wp_enqueue_code_editor(array('type' => 'text/html'));
 
-				$this->enqueued_wp_html_editor = true;
+				$this->enqueued_js_wp_html_editor = true;
 			}
 		}
 		// Form - HTML

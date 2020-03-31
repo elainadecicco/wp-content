@@ -1478,7 +1478,7 @@
 								} else {
 
 									parsed_variable = this.get_object_meta_value(this.field_data_cache[field_id], 'default_value', '');
-									parsed_variable = this.parse_variables_process(parsed_variable, section_repeatable_inde, depth + 1);
+									parsed_variable = this.parse_variables_process(parsed_variable, section_repeatable_index, depth + 1);
 								}
 
 								if(parse_variable == 'ecommerce_field_price') {
@@ -1501,10 +1501,9 @@
 
 								var field_name = ws_form_settings.field_prefix + parseInt(field_id) + ((section_repeatable_index) ? '[' + section_repeatable_index + ']' : '');
 
-								var field_obj = $(field_name + '[] option:selected', this.form_canvas_obj);
+								var field_obj = $('[name="' + field_name + '[]"] option:selected', this.form_canvas_obj);
 								if(field_obj.length) {
 
-									// Use live value
 									parsed_variable = field_obj.text();
 								}
 
@@ -2340,7 +2339,7 @@
 
 			var class_field_form = this.get_object_meta_value(this.form, 'class_field', '', false, true);
 			var class_field = this.get_object_meta_value(field, 'class_field', '', false, true);
-			if(class_field_form != '') { class_field += ' ' + class_field_form; }
+			if(class_field_form != '') { class_field += ((class_field == '') ? '' : ' ') + class_field_form; }
 
 			// Full width class for buttons
 			var class_field_full_button_remove = this.get_object_meta_value(field, 'class_field_full_button_remove', '');

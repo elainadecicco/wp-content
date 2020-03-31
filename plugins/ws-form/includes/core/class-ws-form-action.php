@@ -825,7 +825,7 @@
 			if($api_response_error = is_wp_error($response)) {
 
 				// Handle error
-				$api_response_error_message = $response->get_error_message();;
+				$api_response_error_message = $response->get_error_message();
 				$api_response_headers = array();
 				$api_response_body = '';
 				$api_response_http_code = 0;

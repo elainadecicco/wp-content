@@ -448,9 +448,9 @@
 							'datagrid_column_value'	=>	'datalist_field_value',
 
 							// Fields
-							'mask_field'									=>	'<input type="tel" id="#id" name="#name" value="#value"#attributes />#data#invalid_feedback#help',
-							'mask_field_attributes'				=>	array('class', 'disabled', 'readonly', 'min_length', 'max_length', 'pattern_tel', 'list', 'required', 'placeholder', 'aria_describedby', 'aria_labelledby', 'aria_label', 'input_mask', 'custom_attributes'),
-							'mask_field_label'						=>	'<label id="#label_id" for="#id"#attributes>#label</label>',
+							'mask_field'					=>	'<input type="tel" id="#id" name="#name" value="#value"#attributes />#data#invalid_feedback#help',
+							'mask_field_attributes'			=>	array('class', 'disabled', 'readonly', 'min_length', 'max_length', 'pattern_tel', 'list', 'required', 'placeholder', 'aria_describedby', 'aria_labelledby', 'aria_label', 'input_mask', 'custom_attributes'),
+							'mask_field_label'				=>	'<label id="#label_id" for="#id"#attributes>#label</label>',
 							'mask_field_label_attributes'	=>	array('class'),
 
 							'fieldsets'	=>	array(
@@ -458,13 +458,13 @@
 								// Tab: Basic
 								'basic'	=>	array(
 
-									'label'				=>	__('Basic', 'ws-form'),
+									'label'			=>	__('Basic', 'ws-form'),
 									'meta_keys'		=>	array('label_render', 'label_position', 'label_column_width', 'required', 'hidden', 'default_value_tel', 'placeholder', 'help_count_char'),
 
 									'fieldsets'		=>	array(
 
 										array(
-											'label'			=>	__('Accessibility', 'ws-form'),
+											'label'		=>	__('Accessibility', 'ws-form'),
 											'meta_keys'	=>	array('aria_label')
 										),
 
@@ -478,7 +478,7 @@
 								// Tab: Advanced
 								'advanced'		=>	array(
 
-									'label'			=>	__('Advanced', 'ws-form'),
+									'label'		=>	__('Advanced', 'ws-form'),
 
 									'fieldsets'	=>	array(
 
@@ -488,12 +488,12 @@
 										),
 
 										array(
-											'label'			=>	__('Classes', 'ws-form'),
+											'label'		=>	__('Classes', 'ws-form'),
 											'meta_keys'	=> array('class_field_wrapper', 'class_field')
 										),
 
 										array(
-											'label'			=>	__('Restrictions', 'ws-form'),
+											'label'		=>	__('Restrictions', 'ws-form'),
 											'meta_keys'	=> array('disabled','readonly', 'min_length', 'max_length', 'input_mask', 'pattern_tel')
 										),
 
@@ -503,7 +503,7 @@
 										),
 
 										array(
-											'label'			=>	__('Validation', 'ws-form'),
+											'label'		=>	__('Validation', 'ws-form'),
 											'meta_keys'	=>	array('invalid_feedback_render', 'invalid_feedback')
 										),
 
@@ -517,7 +517,7 @@
 								// Datalist
 								'datalist'	=> array(
 
-									'label'			=>	__('Datalist', 'ws-form'),
+									'label'		=>	__('Datalist', 'ws-form'),
 									'meta_keys'	=> array('data_grid_datalist', 'datalist_field_text', 'datalist_field_value')
 								)
 							)
@@ -1580,6 +1580,10 @@
 				)
 			);
 
+			// Apply filter
+			$field_types = apply_filters('wsf_config_field_types', $field_types);
+
+			// Add icons and compatibility links
 			if(!$public) {
 
 				foreach($field_types as $group_key => $group) {
@@ -1588,9 +1592,12 @@
 
 					foreach($types as $field_key => $field_type) {
 
-						// Set icons
+						// Set icons (If not already an SVG)
 						$field_icon = isset($field_type['icon']) ? $field_type['icon'] : $field_key;
-						$field_types[$group_key]['types'][$field_key]['icon'] = self::get_icon_16_svg($field_icon);
+						if(strpos($field_icon, '<svg') === false) {
+
+							$field_types[$group_key]['types'][$field_key]['icon'] = self::get_icon_16_svg($field_icon);
+						}
 
 						// Set compatibility
 						if(isset($field_type['compatibility_id'])) {
@@ -1601,9 +1608,6 @@
 					}
 				}
 			}
-
-			// Apply filter
-			$field_types = apply_filters('wsf_config_field_types', $field_types);
 
 			// Cache
 			self::$field_types[$public] = $field_types;
@@ -2033,12 +2037,40 @@
 									'condition'	=>	array('framework' => 'ws-form')
 								),
 
+								'css_minify'	=>	array(
+
+									'label'		=>	__('Minify CSS', 'ws-form'),
+									'type'		=>	'checkbox',
+									'help'		=>	__('Should the WS Form CSS be minified to improve page speed?', 'ws-form'),
+									'default'	=>	'',
+									'condition'	=>	array('framework' => 'ws-form')
+								),
+
+								'css_inline'	=>	array(
+
+									'label'		=>	__('Inline CSS', 'ws-form'),
+									'type'		=>	'checkbox',
+									'help'		=>	__('Should the WS Form CSS be rendered inline to improve page speed?', 'ws-form'),
+									'default'	=>	'',
+									'condition'	=>	array('framework' => 'ws-form')
+								),
+
 								'css_cache_duration'	=>	array(
 
 									'label'		=>	__('CSS Cache Duration', 'ws-form'),
 									'type'		=>	'number',
-									'help'		=>	__('Expires header duration in seconds.', 'ws-form'),
-									'default'	=>	86400,
+									'help'		=>	__('Expires header duration in seconds for WS Form CSS.', 'ws-form'),
+									'default'	=>	31536000,
+									'public'	=>	true,
+									'condition'	=>	array('framework' => 'ws-form')
+								),
+
+								'comments_css'	=>	array(
+
+									'label'		=>	__('CSS Comments', 'ws-form'),
+									'type'		=>	'checkbox',
+									'help'		=>	__('Should WS Form CSS include comments?', 'ws-form'),
+									'default'	=>	false,
 									'public'	=>	true,
 									'condition'	=>	array('framework' => 'ws-form')
 								),
@@ -2047,19 +2079,9 @@
 
 									'label'		=>	__('HTML Comments', 'ws-form'),
 									'type'		=>	'checkbox',
-									'help'		=>	__('Should form HTML include comments?', 'ws-form'),
+									'help'		=>	__('Should WS Form HTML include comments?', 'ws-form'),
 									'default'	=>	false,
 									'public'	=>	true
-								),
-
-								'comments_css'	=>	array(
-
-									'label'		=>	__('CSS Comments', 'ws-form'),
-									'type'		=>	'checkbox',
-									'help'		=>	__('Should form CSS include comments?', 'ws-form'),
-									'default'	=>	false,
-									'public'	=>	true,
-									'condition'	=>	array('framework' => 'ws-form')
 								)
 							)
 						)
@@ -2184,7 +2206,7 @@
 
 								'disable_form_stats'			=>	array(
 
-									'label'		=>	__('Disable statistics', 'ws-form'),
+									'label'		=>	__('Disable Statistics', 'ws-form'),
 									'type'		=>	'checkbox',
 									'default'	=>	false,
 									'help'		=>	__('If checked, WS Form will stop gathering statistical data about forms.', 'ws-form'),
@@ -2192,7 +2214,7 @@
 
 								'disable_count_submit_unread'	=>	array(
 
-									'label'		=>	__('Disable unread submission bubbles', 'ws-form'),
+									'label'		=>	__('Disable Unread Submission Bubbles', 'ws-form'),
 									'type'		=>	'checkbox',
 									'default'	=>	false
 								)
@@ -6082,9 +6104,9 @@
 			}
 
 			// Apply filter
-			$return_value = apply_filters('wsf_config_icon_16_svg', '<svg height="16" width="16" viewBox="0 0 16 16">' . $return_value . '</svg>', $id);
+			$return_value = apply_filters('wsf_config_icon_16_svg', $return_value, $id);
 
-			return $return_value;
+			return '<svg height="16" width="16" viewBox="0 0 16 16">' . $return_value . '</svg>';
 		}
 
 

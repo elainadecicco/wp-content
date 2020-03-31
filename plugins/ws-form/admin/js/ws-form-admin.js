@@ -1073,7 +1073,7 @@
 		// Variables for rendering field
 		var this_field_label = field_data.label;
 
-		if(typeof field_type !== 'undefined') {
+		if(typeof(field_type) !== 'undefined') {
 
 			var field_type_label = field_type.label;
 			var field_type_icon = field_type.icon;
@@ -9696,7 +9696,7 @@
 			var api_call_path = $.WS_Form.this.action_api_method_path(action_id, 'list_subs_fetch', list_id);
 
 			// Clear select
-			$('#wsf-list-sub-id').empty().append($("<option />").val('').text($.WS_Form.this.language('list_subs_call')));;
+			$('#wsf-list-sub-id').empty().append($("<option />").val('').text($.WS_Form.this.language('list_subs_call')));
 
 			// Make API call
 			$.WS_Form.this.api_call(api_call_path, 'GET', false, function(response) {
@@ -9716,7 +9716,7 @@
 				}
 
 				// Populate select
-				$('#wsf-list-sub-id').empty().append($("<option />").val('').text($.WS_Form.this.language('list_subs_select')));;
+				$('#wsf-list-sub-id').empty().append($("<option />").val('').text($.WS_Form.this.language('list_subs_select')));
 
 				var list_subs = response.data;
 

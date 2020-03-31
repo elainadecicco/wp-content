@@ -44,7 +44,11 @@
 <?php 
 $args = array( 
 	'posts_per_page' => 3,
+<<<<<<< HEAD
 'post_type' => 'community' );
+=======
+'post_type' => 'reviews' );
+>>>>>>> master
  
 // the query
 $sec_query = new WP_Query( $args );

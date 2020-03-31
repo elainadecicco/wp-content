@@ -1,7 +1,7 @@
 <?php
 
 	// Form - Submnissions - Admin Page
-	$form_id = $this->ws_form_wp_list_table_submit_obj->form_id;;
+	$form_id = $this->ws_form_wp_list_table_submit_obj->form_id;
 
 	// Loader
 	WS_Form_Common::loader();
@@ -40,6 +40,9 @@
 <hr class="wp-header-end">
 <!-- /Header -->
 <?php
+
+	// Review nag
+	WS_Form_Common::review();
 
 	// Prepare
 	$this->ws_form_wp_list_table_submit_obj->prepare_items();

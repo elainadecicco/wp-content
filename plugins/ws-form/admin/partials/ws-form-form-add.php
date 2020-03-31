@@ -72,7 +72,7 @@
 	foreach ($wizard_categories as $wizard_category)  {
 ?>
 <!-- Tab Content: <?php echo htmlentities($wizard_category->label); ?> -->
-<div id="wsf_wizard_category_<?php echo $wizard_category->id; ?>"<?php if(isset($wizard_category->action_id)) { ?> data-action-id="<?php echo $wizard_category->action_id; ?>"<?php } ?><?php if(isset($wizard_category->action_list_sub_modal_label)) { ?> data-action-list-sub-modal-label="<?php echo htmlentities($wizard_category->action_list_sub_modal_label); ?>"<?php } ?>>
+<div id="wsf_wizard_category_<?php echo $wizard_category->id; ?>"<?php if(isset($wizard_category->action_id)) { ?> data-action-id="<?php echo $wizard_category->action_id; ?>"<?php } ?><?php if(isset($wizard_category->action_list_sub_modal_label)) { ?> data-action-list-sub-modal-label="<?php echo htmlentities($wizard_category->action_list_sub_modal_label); ?>"<?php } ?> style="display: none;">
 <ul class="wsf-templates">
 <?php
 		$ws_form_wizard->wizard_category_render($wizard_category);

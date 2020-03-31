@@ -185,4 +185,21 @@ padding:100px;
     padding:20px;
 }
 /* comment*/
+<<<<<<< HEAD
+>>>>>>> master
+=======
+
+
+@media only screen and (max-width: 600px) {
+ 
+
+    #logo{
+
+     position: relative;
+     left: 50%;
+    transform: translateX(-50%);
+    }
+
+  }
+  
 >>>>>>> master

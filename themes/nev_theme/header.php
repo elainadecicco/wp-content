@@ -32,6 +32,7 @@
 
 		<body <?php body_class(); ?>>
 
+			<!--entire page container-->
 			<div id="page" class="site">
 
 				<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( '', 'nev-theme' ); ?>
@@ -50,14 +51,16 @@
 					</div><!-- .site-branding -->
 
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-
+                        <!-- adding logo -->
 						<img id="logo" src="<?php echo $header_img; ?>" alt="Logo" width="350px" height="200px" />
 
 					</a><!--- /*logo */ -->
-
+						
+					<!--navigation bar-->
 					<nav id="site-navigation" class="main-navigation">
 
 					<?php
+					//controls for navigation
 						wp_nav_menu( array(
 							'menu_id' => 'primary-menu',
 							'container' => '',

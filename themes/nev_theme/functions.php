@@ -15,7 +15,8 @@
 	 * as indicating support for post thumbnails.
 	 */
 	
-		
+	
+	/*setting up custom theme */
 	function nev_theme_setup() {
 
 		if ( ! function_exists( 'nev_theme_setup' ) ) :
@@ -205,6 +206,8 @@ function nev_theme_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
+
+//add action function
 add_action( 'wp_enqueue_scripts', 'nev_theme_scripts' );
 
 /**

@@ -275,7 +275,9 @@ function nev_custom_post_type() {
 );
 register_post_type('community',$args);
 }
+
 add_action('init', 'nev_custom_post_type');
+
 // add action will tell when to run the function, and specifically which one it is refering to.
 
 
@@ -287,7 +289,7 @@ function nev_conditional_tag() {
 	endif;	
 }
 
-add_action('after_setup_theme', 'nev_conditional_tag');
+add_action('after_setup_theme', 'nev_conditional_tag'); 
 
 
 

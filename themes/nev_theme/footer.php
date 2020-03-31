@@ -57,7 +57,7 @@ $sec_query = new WP_Query( $args );
 	<?php the_permalink() ?>
     <?php the_title(); ?>
     <?php the_excerpt(); ?>
-	
+	<?php the_post_thumbnail('thumbnail'); ?>
  
 <?php endwhile; ?><!-- end of the loop -->
  

@@ -200,5 +200,33 @@ footer h3{
     transform: translateX(-50%);
     }
 
+    #primary-menu{
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-evenly;
+        background-color:#e4ff95;
+        color: white;
+        align-items: center;
+        margin-right:0px;
+        margin-left: 0px;
+        margin-top: 30px;
+    }
+
+
+    #site-navigation ul li{
+        font-size: 8px;
+    }
+
+    .page_item.page-item-13 {
+        display: none!important;
+    }
+    .menu-item-home.menu-item-11{
+        display: none;
+    }
+
+    .menu-item-object-page.menu-item-26{
+        display: none;
+    }
+
   }
   

@@ -44,7 +44,7 @@
 <?php 
 $args = array( 
 	'posts_per_page' => 3,
-'post_type = 'reviews'' );
+'post_type' = 'reviews' );
  
 // the query
 $sec_query = new WP_Query( $args );

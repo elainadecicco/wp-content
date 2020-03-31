@@ -1,0 +1,4 @@
+2020-03-31T19:27:19+00:00 CRITICAL syntax error, unexpected 'reviews' (T_STRING), expecting ')' in C:\Users\nites\Desktop\cms\nevfreshbeautynew\app\public\wp-content\themes\nev_theme\footer.php on line 47
+
+2020-03-31T19:28:27+00:00 CRITICAL syntax error, unexpected '=', expecting ')' in C:\Users\nites\Desktop\cms\nevfreshbeautynew\app\public\wp-content\themes\nev_theme\footer.php on line 47
+

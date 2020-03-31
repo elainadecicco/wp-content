@@ -237,6 +237,11 @@ footer h3{
     .woocommerce-Price-amount {
         font-size: 1.3em;
     }
+/* For Wocommerce Product Name */
+    .woocommerce ul.products li.product .woocommerce-loop-category__title, .woocommerce ul.products li.product .woocommerce-loop-product__title, .woocommerce ul.products li.product h3 {
+
+        font-size: 0.7em;
+    }
 
   }
   

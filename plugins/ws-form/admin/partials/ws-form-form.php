@@ -29,6 +29,10 @@
 <!-- /Header -->
 <?php
 
+	// Review nag
+	WS_Form_Common::review();
+
+	// Import
 	if(WS_Form_Common::can_user('import_form')) {
 ?>
 <input type="file" class="wsf-file-upload" id="wsf-form-upload-file" accept=".json"/>

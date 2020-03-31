@@ -156,9 +156,33 @@ padding:100px;
     display:none;
 }
 
+<<<<<<< HEAD
  /*  */
 
 
 
 
 
+=======
+.related.products{
+    background-color:white;
+    padding:20px;
+}
+.woocommerce #content div.product div.summary, .woocommerce div.product div.summary, .woocommerce-page #content div.product div.summary, .woocommerce-page div.product div.summary{
+    background-color:white;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+}
+.woocommerce-Price-amount{
+    font-size:2em;
+}
+.woocommerce div.product .woocommerce-tabs .panel{
+    background-color:white;
+    height:200px;
+    margin:0;
+    padding:20px;
+}
+/* comment*/
+>>>>>>> master

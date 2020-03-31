@@ -37,6 +37,9 @@
 <hr class="wp-header-end">
 <!-- /Header -->
 <?php
+
+	// Review nag
+	WS_Form_Common::review();
 	
 	// SSL Warning
 	if(($tabCurrent == 'data') && !is_ssl()) {
@@ -57,7 +60,7 @@
 ?>
 </h2>
 
-<form method="post" action="admin.php?page=ws-form-settings<?php echo (WS_Form_Common::get_query_var('tab') != '') ? '&tab=' . urlencode(WS_Form_Common::get_query_var('tab')) : ''; ?>" novalidate="novalidate" id="wsf_settings">
+<form method="post" action="admin.php?page=ws-form-settings<?php echo (WS_Form_Common::get_query_var('tab') != '') ? '&tab=' . urlencode(WS_Form_Common::get_query_var('tab')) : ''; ?>" novalidate="novalidate" id="wsf_settings" enctype="multipart/form-data">
 
 <input type="hidden" name="tab" value="<?php echo $tabCurrent; ?>" />
 <input type="hidden" name="action" value="wsf-settings-update" />
@@ -405,6 +408,14 @@
 				case 'text' :
 ?>
 <input class="regular-text" value="<?php echo $value; ?>"<?php echo $attributes; ?> />
+<?php
+					$save_button = true;
+					break;
+
+				// File field
+				case 'file' :
+?>
+<input class="regular-text"<?php echo $attributes; ?> />
 <?php
 					$save_button = true;
 					break;

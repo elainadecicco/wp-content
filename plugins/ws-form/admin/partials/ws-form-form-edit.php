@@ -69,7 +69,11 @@
 </div>
 <hr class="wp-header-end">
 <!-- /Header -->
+<?php
 
+	// Review nag
+	WS_Form_Common::review();
+?>
 <!-- Wrapper -->
 <div id="poststuff"><div id="post-body" class="metabox-holder columns-2"><div id="post-body-content" style="position: relative;">
 

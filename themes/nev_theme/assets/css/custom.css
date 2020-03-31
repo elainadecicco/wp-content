@@ -234,5 +234,9 @@ footer h3{
     }
     
 
+    .woocommerce-Price-amount {
+        font-size: 1.3em;
+    }
+
   }
   

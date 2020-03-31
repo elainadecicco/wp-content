@@ -237,8 +237,8 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 function nev_custom_post_type() {
 	$labels = array(
 		/*we added an array of labels, so wordpress can start the CPT */
-	'name' => 'Reviews',
-	'singular_name' => 'Review',
+	'name' => 'community',
+	'singular_name' => 'community',
 	'add_new' => 'Add Item',
 	'all_items' => 'All Items',
 	'add_new_item' => 'Add New Item',
@@ -273,7 +273,7 @@ function nev_custom_post_type() {
 	
 	/* we can also assign this post a category and tag */
 );
-register_post_type('reviews',$args);
+register_post_type('community',$args);
 }
 add_action('init', 'nev_custom_post_type');
 // add action will tell when to run the function, and specifically which one it is refering to.

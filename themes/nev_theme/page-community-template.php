@@ -1,12 +1,12 @@
 <?php
 
-/*Template Name: Reviews Template */
+/*Template Name:  Community Template */
 
 get_header(); ?>
 
     <?php
 
-    $args = array('post_type' => 'reviews', 'posts_per_page' => 3);     
+    $args = array('post_type' => 'community', 'posts_per_page' => 3);     
     $loop = new WP_Query( $args );
 
     if( $loop -> have_posts() ):

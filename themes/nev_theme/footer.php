@@ -56,7 +56,8 @@ $sec_query = new WP_Query( $args );
     <!-- template tags will return values from the post in the $sec_query object
 	<?php the_permalink() ?>
     <?php the_title(); ?>
-    
+    <?php the_excerpt(); ?>
+	
  
 <?php endwhile; ?><!-- end of the loop -->
  
